@@ -1,0 +1,76 @@
+name: Create Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Create deployment package
+        run: |
+          mkdir -p release/vietnam-schools-api
+          
+          cp -r app release/vietnam-schools-api/
+          cp -r data release/vietnam-schools-api/
+          cp -r scripts release/vietnam-schools-api/
+          cp requirements.txt release/vietnam-schools-api/
+          cp README.md release/vietnam-schools-api/
+          
+          cat > release/vietnam-schools-api/setup.sh << 'EOF'
+          #!/bin/bash
+          echo "Setting up Vietnam Schools API..."
+          python3 -m venv venv
+          source venv/bin/activate
+          pip install -r requirements.txt --quiet
+          python scripts/import_data.py
+          echo "Setup complete!"
+          EOF
+          
+          cat > release/vietnam-schools-api/install-service.sh << 'EOF'
+          #!/bin/bash
+          INSTALL_DIR=$(pwd)
+          USER=$(whoami)
+          
+          cat << SVCEOF | sudo tee /etc/systemd/system/vietnam-schools-api.service > /dev/null
+          [Unit]
+          Description=Vietnam Schools API
+          After=network.target
+          
+          [Service]
+          Type=simple
+          User=${USER}
+          WorkingDirectory=${INSTALL_DIR}
+          Environment="PATH=${INSTALL_DIR}/venv/bin"
+          ExecStart=${INSTALL_DIR}/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --root-path /openapi
+          Restart=always
+          RestartSec=10
+          
+          [Install]
+          WantedBy=multi-user.target
+          SVCEOF
+          
+          sudo systemctl daemon-reload
+          sudo systemctl enable vietnam-schools-api
+          sudo systemctl start vietnam-schools-api
+          echo "Service installed!"
+          EOF
+          
+          chmod +x release/vietnam-schools-api/*.sh
+          
+          cd release
+          tar -czf vietnam-schools-api-${{ github.ref_name }}.tar.gz vietnam-schools-api/
+      
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: release/vietnam-schools-api-${{ github.ref_name }}.tar.gz
+          body: "Vietnam Schools API ${{ github.ref_name }} - Ready to deploy"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
