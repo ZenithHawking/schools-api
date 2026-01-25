@@ -1,12 +1,7 @@
-#!/usr/bin/env python3
-"""
-Script to import schools data from JSON file to database
-Usage: python scripts/import_data.py
-"""
-
 import json
 import sys
 from pathlib import Path
+import glob
 
 # Add parent directory to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -15,35 +10,45 @@ from app.database import SessionLocal, engine
 from app.models import Base, School, Campus, Faculty
 
 
-def import_schools(json_file: str = "data/schools.json"):
-    """Import schools from JSON file"""
+def import_schools_from_file(db, json_file: str):
+    """Import schools from a single JSON file"""
     
-    # Create tables
-    print("Creating database tables...")
-    Base.metadata.create_all(bind=engine)
+    print(f"\n📄 Processing file: {json_file}")
     
     # Load JSON data
-    print(f"Loading data from {json_file}...")
     with open(json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
-    db = SessionLocal()
+    # Support both formats
+    if isinstance(data, dict) and 'schools' in data:
+        # Format: {"schools": [...]}
+        schools_data = data['schools']
+    elif isinstance(data, list):
+        # Format: [...]
+        schools_data = data
+    else:
+        print(f"⚠️  Skipping {json_file}: Invalid format (expected array or object with 'schools' key)")
+        return 0, 0, 0
     
-    try:
-        # Clear existing data
-        print("Clearing existing data...")
-        db.query(Faculty).delete()
-        db.query(Campus).delete()
-        db.query(School).delete()
-        db.commit()
-        
-        schools_count = 0
-        campuses_count = 0
-        faculties_count = 0
-        
-        # Import schools
-        for school_data in data['schools']:
-            print(f"\nImporting school: {school_data['name']}")
+    # Check if data is empty
+    if not schools_data:
+        print(f"   ℹ️  File is empty, skipping...")
+        return 0, 0, 0
+    
+    schools_count = 0
+    campuses_count = 0
+    faculties_count = 0
+    
+    # Import schools
+    for school_data in schools_data:
+        try:
+            print(f"   → Importing: {school_data['name']}")
+            
+            # Check if school already exists
+            existing_school = db.query(School).filter(School.id == school_data['id']).first()
+            if existing_school:
+                print(f"      ⚠️  School '{school_data['id']}' already exists, skipping...")
+                continue
             
             # Create school
             school = School(
@@ -64,7 +69,7 @@ def import_schools(json_file: str = "data/schools.json"):
             schools_count += 1
             
             # Create campuses
-            for campus_data in school_data['campuses']:
+            for campus_data in school_data.get('campuses', []):
                 campus = Campus(
                     school_id=school_data['id'],
                     name=campus_data['name'],
@@ -75,7 +80,7 @@ def import_schools(json_file: str = "data/schools.json"):
                 campuses_count += 1
             
             # Create faculties
-            for faculty_data in school_data['faculties']:
+            for faculty_data in school_data.get('faculties', []):
                 faculty = Faculty(
                     id=faculty_data['id'],
                     school_id=school_data['id'],
@@ -86,19 +91,89 @@ def import_schools(json_file: str = "data/schools.json"):
                 )
                 db.add(faculty)
                 faculties_count += 1
+            
+        except KeyError as e:
+            print(f"      ❌ Error: Missing required field {e} in school data")
+            continue
+        except Exception as e:
+            print(f"      ❌ Error importing school: {e}")
+            continue
+    
+    return schools_count, campuses_count, faculties_count
+
+
+def import_all_schools(data_dir: str = "data"):
+    """Import schools from all JSON files in data directory"""
+    
+    print("="*60)
+    print("🎓 Schools API - Data Import")
+    print("="*60)
+    
+    # Create tables
+    print("\n📊 Creating database tables...")
+    Base.metadata.create_all(bind=engine)
+    
+    # Find all JSON files in data directory
+    json_files = glob.glob(f"{data_dir}/*.json")
+    
+    if not json_files:
+        print(f"\n⚠️  No JSON files found in '{data_dir}/' directory")
+        return
+    
+    print(f"\n📁 Found {len(json_files)} JSON file(s) in '{data_dir}/':")
+    for f in json_files:
+        print(f"   - {f}")
+    
+    db = SessionLocal()
+    
+    try:
+        # Clear existing data
+        print(f"\n🗑️  Clearing existing data...")
+        db.query(Faculty).delete()
+        db.query(Campus).delete()
+        db.query(School).delete()
+        db.commit()
+        print("   ✅ Database cleared")
+        
+        total_schools = 0
+        total_campuses = 0
+        total_faculties = 0
+        
+        # Import from each JSON file
+        for json_file in sorted(json_files):
+            try:
+                schools, campuses, faculties = import_schools_from_file(db, json_file)
+                total_schools += schools
+                total_campuses += campuses
+                total_faculties += faculties
+                
+                if schools > 0:
+                    print(f"   ✅ Imported {schools} schools, {campuses} campuses, {faculties} faculties")
+                
+            except json.JSONDecodeError as e:
+                print(f"   ❌ Error: Invalid JSON in {json_file}: {e}")
+                continue
+            except Exception as e:
+                print(f"   ❌ Error processing {json_file}: {e}")
+                continue
         
         # Commit all changes
         db.commit()
         
-        print("\n" + "="*50)
-        print("Import completed successfully!")
-        print(f"✅ Imported {schools_count} schools")
-        print(f"✅ Imported {campuses_count} campuses")
-        print(f"✅ Imported {faculties_count} faculties")
-        print("="*50)
+        print("\n" + "="*60)
+        if total_schools > 0:
+            print("✅ Import completed successfully!")
+            print(f"📊 Total imported:")
+            print(f"   • {total_schools} schools")
+            print(f"   • {total_campuses} campuses")
+            print(f"   • {total_faculties} faculties")
+        else:
+            print("⚠️  No schools were imported")
+            print("   Database is empty and ready for contributions!")
+        print("="*60)
         
     except Exception as e:
-        print(f"\n❌ Error during import: {e}")
+        print(f"\n❌ Fatal error during import: {e}")
         db.rollback()
         raise
     
@@ -107,4 +182,4 @@ def import_schools(json_file: str = "data/schools.json"):
 
 
 if __name__ == "__main__":
-    import_schools()
+    import_all_schools()
