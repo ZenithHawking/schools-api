@@ -12,7 +12,7 @@ models.Base.metadata.create_all(bind=engine)
 # FastAPI app
 app = FastAPI(
     title="Vietnam Schools API",
-    root_path="/openapi/schoolapi"
+    root_path="/openapi/schoolapi",
     description="Community-driven open API for Vietnamese universities and colleges",
     version="1.0.0",
     contact={
