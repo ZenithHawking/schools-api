@@ -83,7 +83,7 @@ jobs:
           echo ""
           echo "Next steps:"
           echo "1. Install as service: bash install-service.sh"
-          echo "2. Or run manually: source venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 5000"
+          echo "2. Or run manually: source venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 5001"
           echo ""
           EOF
           
@@ -115,7 +115,7 @@ jobs:
           User=${USER}
           WorkingDirectory=${INSTALL_DIR}
           Environment="PATH=${INSTALL_DIR}/venv/bin:/usr/local/bin:/usr/bin:/bin"
-          ExecStart=${INSTALL_DIR}/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 5000
+          ExecStart=${INSTALL_DIR}/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 5001
           Restart=always
           RestartSec=10
           StandardOutput=journal
@@ -158,7 +158,7 @@ jobs:
               echo "  - Restart: sudo systemctl restart ${SERVICE_NAME}"
               echo "  - Stop: sudo systemctl stop ${SERVICE_NAME}"
               echo ""
-              echo "API should be available at: http://localhost:5000"
+              echo "API should be available at: http://localhost:5001"
               echo "With Cloudflare Tunnel: https://apihoavan.xyz/openapi/schoolapi/"
           else
               echo ""
@@ -269,7 +269,7 @@ jobs:
           The service will:
           - Auto-start on boot
           - Auto-restart on crash
-          - Run on port 5000
+          - Run on port 5001
           - Log to systemd journal
           
           ### 4. Configure Cloudflare Tunnel
@@ -283,7 +283,7 @@ jobs:
           ingress:
             - hostname: yourdomain.com
               path: /openapi/schoolapi/*
-              service: http://localhost:5000
+              service: http://localhost:5001
             
             # Other routes...
             
@@ -331,7 +331,7 @@ jobs:
           
           ```bash
           # Test locally
-          curl http://localhost:5000/
+          curl http://localhost:5001/
           
           # Test via Cloudflare Tunnel
           curl https://yourdomain.com/openapi/schoolapi/
@@ -348,13 +348,13 @@ jobs:
           # Check logs
           sudo journalctl -u schools-api -n 50 --no-pager
           
-          # Check if port 5000 is available
-          sudo netstat -tulpn | grep 5000
+          # Check if port 5001 is available
+          sudo netstat -tulpn | grep 5001
           
           # Test manual run
           cd /path/to/schools-api
           source venv/bin/activate
-          uvicorn app.main:app --host 127.0.0.1 --port 5000
+          uvicorn app.main:app --host 127.0.0.1 --port 5001
           ```
           
           ### Database issues
@@ -391,7 +391,7 @@ jobs:
           
           ## 🔒 Security Notes
           
-          - API runs on localhost:5000 (not exposed directly)
+          - API runs on localhost:5001 (not exposed directly)
           - Access via Cloudflare Tunnel (encrypted)
           - SQLite database stored locally
           - Service runs as non-root user
@@ -417,7 +417,7 @@ jobs:
             # 🎓 Schools API ${{ github.ref_name }}
             
             ## ✨ What's New
-            - ✅ Configured for port 5000
+            - ✅ Configured for port 5001
             - ✅ Subpath support: /openapi/schoolapi/
             - ✅ Cloudflare Tunnel ready
             - ✅ Auto-setup scripts included
