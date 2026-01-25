@@ -1,0 +1,934 @@
+{
+  "schools": [
+  {
+  "id": "hcmut",
+  "code": "HCMUT",
+  "name": "Trường Đại học Bách khoa",
+  "logo_url": null,
+  "description": "Trường Đại học Bách khoa, Đại học Quốc gia TP.HCM là trường đại học công lập hàng đầu Việt Nam trong lĩnh vực kỹ thuật và công nghệ.",
+  
+  "type": "public",
+  "country": "VN",
+  
+  "contact": {
+    "website": "https://www.hcmut.edu.vn",
+    "email": " info@hcmut.edu.vn",
+    "phone": "+84 28 3864 7256"
+  },
+  
+  "campuses": [
+    {
+      "name": "Cơ sở Lý Thường Kiệt",
+      "address": "268 Lý Thường Kiệt, Quận 10, TP.HCM",
+      "is_main": true
+    },
+    {
+      "name": "Cơ sở Dĩ An",
+      "address": "Phường Đông Hoà, Thành phố Dĩ An, Bình Dương",
+      "is_main": false
+    }
+  ],
+  
+  "faculties": [
+    {
+      "id": "hcmut_me",
+      "name": "Khoa Cơ khí",
+      "code": "ME",
+      "website": null,
+      "programs": ["Kỹ thuật Cơ khí", "Kỹ thuật Cơ điện tử", "Kỹ thuật Nhiệt"]
+    },
+    {
+      "id": "hcmut_mt",
+      "name": "Khoa Công nghệ Vật liệu",
+      "code": "MT",
+      "website": null,
+      "programs": ["Kỹ thuật Vật liệu", "Kỹ thuật Vật liệu Polymer", "Kỹ thuật Vật liệu Kim loại"]
+    },
+    {
+      "id": "hcmut_eee",
+      "name": "Khoa Điện - Điện tử",
+      "code": null,
+      "programs": ["Kỹ thuật Điện", "Kỹ thuật Điện tử - Viễn thông", "Kỹ thuật Điều khiển và Tự động hóa"]
+    },
+    {
+      "id": "hcmut_as",
+      "name": "Khoa Khoa học Ứng dụng",
+      "code": "AS",
+      "website": null,
+      "programs": ["Toán ứng dụng", "Vật lý kỹ thuật", "Cơ kỹ thuật"]
+    },
+    {
+      "id": "hcmut_cse",
+      "name": "Khoa Khoa học và Kỹ thuật Máy tính",
+      "code": "CSE",
+      "website": null,
+      "programs": ["Khoa học Máy tính", "Kỹ thuật Máy tính", "Trí tuệ Nhân tạo"]
+    },
+    {
+      "id": "hcmut_geo_pet",
+      "name": "Khoa Địa chất và Dầu khí",
+      "code": "GP",
+      "website": null,
+      "programs": ["Kỹ thuật Dầu khí", "Địa chất học"]
+    },
+    {
+      "id": "hcmut_te",
+      "name": "Khoa Giao thông Vận tải",
+      "code": "TE",
+      "website": null,
+      "programs": ["Kỹ thuật Giao thông", "Kỹ thuật Hạ tầng Giao thông"]
+    },
+    {
+      "id": "hcmut_che",
+      "name": "Khoa Hóa học - Kỹ thuật Hóa học",
+      "code": "CHE",
+      "website": null,
+      "programs": ["Kỹ thuật Hóa học", "Công nghệ Thực phẩm", "Công nghệ Sinh học"]
+    },
+    {
+      "id": "hcmut_ce",
+      "name": "Khoa Xây dựng",
+      "code": "CE",
+      "website": null,
+      "programs": ["Kỹ thuật Xây dựng", "Kỹ thuật Xây dựng Công trình Giao thông", "Quản lý Xây dựng"]
+    },
+    {
+      "id": "hcmut_enr",
+      "name": "Khoa Môi trường và Tài nguyên",
+      "code": "ENR",
+      "website": null,
+      "programs": ["Kỹ thuật Môi trường", "Quản lý Tài nguyên và Môi trường"]
+    },
+    {
+      "id": "hcmut_im",
+      "name": "Khoa Quản lý Công nghiệp",
+      "code": "IM",
+      "website": null,
+      "programs": ["Quản lý Công nghiệp", "Logistics và Quản lý Chuỗi Cung ứng", "Quản trị Kinh doanh"]
+    }
+  ],
+  
+  "metadata": {
+    "verified": true,
+    "created_at": "2025-01-19",
+    "updated_at": "2025-01-19"
+  }
+},
+{
+  "id": "stu",
+  "code": "STU",
+  "name": "Trường Đại học Công nghệ Sài Gòn",
+  "logo_url": null,
+  "description": "Trường Đại học Công nghệ Sài Gòn (Saigon Technology University) đào tạo đa ngành, tập trung vào các lĩnh vực kỹ thuật, công nghệ và quản trị.",
+
+  "type": "private",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://www.stu.edu.vn",
+    "email": "contact@stu.edu.vn",
+    "phone": "+84 28 3850 5520"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "180 Cao Lỗ, Phường 4, Quận 8, TP. Hồ Chí Minh",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "stu_it",
+      "name": "Khoa Công nghệ Thông tin",
+      "code": "IT",
+      "website": null,
+      "programs": ["Công nghệ thông tin", "Kỹ thuật máy tính", "Mạng máy tính"]
+    },
+    {
+      "id": "stu_ft",
+      "name": "Khoa Công nghệ Thực phẩm",
+      "code": "FT",
+      "website": null,
+      "programs": ["Công nghệ thực phẩm", "Đảm bảo chất lượng và an toàn thực phẩm"]
+    },
+    {
+      "id": "stu_me",
+      "name": "Khoa Cơ khí",
+      "code": "ME",
+      "website": null,
+      "programs": ["Công nghệ kỹ thuật cơ khí", "Cơ khí chế tạo"]
+    },
+    {
+      "id": "stu_ee",
+      "name": "Khoa Điện - Điện tử",
+      "code": "EE",
+      "website": null,
+      "programs": ["Công nghệ kỹ thuật điện, điện tử", "Kỹ thuật điều khiển"]
+    },
+    {
+      "id": "stu_ce",
+      "name": "Khoa Kỹ thuật Công trình",
+      "code": "CE",
+      "website": null,
+      "programs": ["Kỹ thuật xây dựng", "Quản lý xây dựng"]
+    },
+    {
+      "id": "stu_ba",
+      "name": "Khoa Quản trị Kinh doanh",
+      "code": "BA",
+      "website": null,
+      "programs": ["Quản trị kinh doanh", "Marketing", "Kinh doanh quốc tế"]
+    },
+    {
+      "id": "stu_design",
+      "name": "Khoa Design",
+      "code": "DES",
+      "website": null,
+      "programs": ["Thiết kế công nghiệp", "Thiết kế đồ họa", "Thiết kế nội thất"]
+    },
+    {
+      "id": "stu_inservice",
+      "name": "Khoa Ngoài chính quy",
+      "code": "INS",
+      "website": null,
+      "programs": ["Đào tạo ngoài chính quy", "Bồi dưỡng ngắn hạn"]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2025-01-19",
+    "updated_at": "2025-01-19"
+  }
+},
+{
+  "id": "sgu",
+  "code": "SGU",
+  "name": "Trường Đại học Sài Gòn",
+  "logo_url": null,
+  "description": "Trường Đại học Sài Gòn là trường đại học công lập trực thuộc UBND TP.HCM, đào tạo đa ngành gồm sư phạm, khoa học tự nhiên, khoa học xã hội, kinh tế, công nghệ và nghệ thuật.",
+  "type": "public",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://www.sgu.edu.vn",
+    "email": "daihocsaigon@sgu.edu.vn",
+    "phone": "+84 28 3835 4409 - 3835 2309"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "273 An Dương Vương, Quận 5, TP.HCM",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "sgu_it",
+      "name": "Khoa Công nghệ Thông tin",
+      "code": "IT",
+      "website": null,
+      "programs": ["Công nghệ thông tin","Kỹ thuật phần mềm","Hệ thống thông tin"]
+    },
+    {
+      "id": "sgu_math",
+      "name": "Khoa Toán - Ứng dụng",
+      "code": "MATH",
+      "website": null,
+      "programs": ["Toán học","Toán ứng dụng","Sư phạm Toán học"]
+    },
+    {
+      "id": "sgu_physics",
+      "name": "Khoa Vật lý",
+      "code": "PHY",
+      "website": null,
+      "programs": ["Vật lý học","Vật lý kỹ thuật","Sư phạm Vật lý"]
+    },
+    {
+      "id": "sgu_chemistry",
+      "name": "Khoa Hóa học",
+      "code": "CHE",
+      "website": null,
+      "programs": ["Hóa học","Sư phạm Hóa học"]
+    },
+    {
+      "id": "sgu_biology",
+      "name": "Khoa Sinh học",
+      "code": "BIO",
+      "website": null,
+      "programs": ["Sinh học","Sư phạm Sinh học"]
+    },
+    {
+      "id": "sgu_literature",
+      "name": "Khoa Ngữ văn",
+      "code": "LIT",
+      "website": null,
+      "programs": ["Ngữ văn","Sư phạm Ngữ văn"]
+    },
+    {
+      "id": "sgu_history",
+      "name": "Khoa Lịch sử",
+      "code": "HIS",
+      "website": null,
+      "programs": ["Lịch sử","Sư phạm Lịch sử","Việt Nam học"]
+    },
+    {
+      "id": "sgu_foreign_languages",
+      "name": "Khoa Ngoại ngữ",
+      "code": "LANG",
+      "website": null,
+      "programs": ["Ngôn ngữ Anh","Ngôn ngữ Trung Quốc","Ngôn ngữ Pháp","Sư phạm Tiếng Anh"]
+    },
+    {
+      "id": "sgu_economics",
+      "name": "Khoa Kinh tế",
+      "code": "ECO",
+      "website": null,
+      "programs": ["Quản trị kinh doanh","Kế toán","Tài chính - Ngân hàng"]
+    },
+    {
+      "id": "sgu_law",
+      "name": "Khoa Luật",
+      "code": "LAW",
+      "website": null,
+      "programs": ["Luật"]
+    },
+    {
+      "id": "sgu_arts",
+      "name": "Khoa Nghệ thuật",
+      "code": "ART",
+      "website": null,
+      "programs": ["Thiết kế đồ họa","Âm nhạc","Mỹ thuật"]
+    },
+    {
+      "id": "sgu_physical_education",
+      "name": "Khoa Giáo dục Thể chất",
+      "code": "PE",
+      "website": null,
+      "programs": ["Giáo dục thể chất"]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+},
+{
+  "id": "hiu",
+  "code": "HIU",
+  "name": "Trường Đại học Quốc tế Hồng Bàng",
+  "logo_url": null,
+  "description": "Trường Đại học Quốc tế Hồng Bàng là trường đại học tư thục đào tạo đa ngành, mạnh về khối khoa học sức khỏe, kinh tế, công nghệ và xã hội.",
+  "type": "private",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://hiu.vn",
+    "email": "info@hiu.vn",
+    "phone": "+84 28 7308 3456"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "215 Điện Biên Phủ, Quận Bình Thạnh, TP.HCM",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "hiu_health",
+      "name": "Khoa Khoa học Sức khỏe",
+      "code": "HLT",
+      "website": null,
+      "programs": 
+      [
+        "Y khoa",
+        "Răng - Hàm - Mặt",
+        "Dược học",
+        "Điều dưỡng",
+        "Y học cổ truyền",
+        "Kỹ thuật xét nghiệm y học",
+        "Kỹ thuật phục hồi chức năng"
+      ]
+    },
+    {
+      "id": "hiu_business",
+      "name": "Khoa Kinh tế - Quản trị",
+      "code": "BUS",
+      "website": null,
+      "programs": 
+      [
+        "Quản trị kinh doanh",
+        "Marketing",
+        "Kế toán",
+        "Tài chính - Ngân hàng",
+        "Quản trị khách sạn"
+      ]
+    },
+    {
+      "id": "hiu_it",
+      "name": "Khoa Công nghệ Thông tin",
+      "code": "IT",
+      "website": null,
+      "programs": 
+      [
+        "Công nghệ thông tin",
+        "Khoa học máy tính",
+        "Kỹ thuật phần mềm"
+      ]
+    },
+    {
+      "id": "hiu_social",
+      "name": "Khoa Khoa học Xã hội",
+      "code": "SOC",
+      "website": null,
+      "programs": 
+      [
+        "Tâm lý học",
+        "Việt Nam học",
+        "Quan hệ quốc tế"
+      ]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+},
+{
+  "id": "vhu",
+  "code": "VHU",
+  "name": "Trường Đại học Văn Hiến",
+  "logo_url": null,
+  "description": "Trường Đại học Văn Hiến đào tạo đa ngành trong các lĩnh vực kinh tế, xã hội, du lịch, công nghệ, nghệ thuật và sức khỏe.",
+  "type": "private",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://vhu.edu.vn",
+    "email": "info@vhu.edu.vn",
+    "phone": "+84 28 1800 1568"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "613 Âu Cơ, Quận Tân Phú, TP.HCM",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "vhu_business",
+      "name": "Khoa Kinh tế",
+      "code": "ECO",
+      "website": null,
+      "programs": 
+      [
+        "Quản trị kinh doanh",
+        "Marketing",
+        "Kế toán",
+        "Tài chính - Ngân hàng"
+      ]
+    },
+    {
+      "id": "vhu_it",
+      "name": "Khoa Công nghệ Thông tin",
+      "code": "IT",
+      "website": null,
+      "programs": 
+      [
+        "Công nghệ thông tin"
+      ]
+    },
+    {
+      "id": "vhu_tourism",
+      "name": "Khoa Du lịch",
+      "code": "TOUR",
+      "website": null,
+      "programs": 
+      [
+        "Quản trị dịch vụ du lịch và lữ hành",
+        "Quản trị khách sạn"
+      ]
+    },
+    {
+      "id": "vhu_social",
+      "name": "Khoa Khoa học Xã hội",
+      "code": "SOC",
+      "website": null,
+      "programs": 
+      [
+        "Tâm lý học",
+        "Xã hội học",
+        "Việt Nam học"
+      ]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+},
+{
+  "id": "huit",
+  "code": "HUIT",
+  "name": "Trường Đại học Công Thương TP.HCM",
+  "logo_url": null,
+  "description": "Trường Đại học Công Thương TP.HCM đào tạo mạnh về công nghiệp, công nghệ, thực phẩm, kinh tế và thương mại.",
+  "type": "public",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://huit.edu.vn",
+    "email": "info@huit.edu.vn",
+    "phone": "+84 28 3816 3318"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "140 Lê Trọng Tấn, Quận Tân Phú, TP.HCM",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "huit_food",
+      "name": "Khoa Công nghệ Thực phẩm",
+      "code": "FOOD",
+      "website": null,
+      "programs": 
+      [
+        "Công nghệ thực phẩm",
+        "Đảm bảo chất lượng và an toàn thực phẩm"
+      ]
+    },
+    {
+      "id": "huit_mechanical",
+      "name": "Khoa Cơ khí",
+      "code": "ME",
+      "website": null,
+      "programs": 
+      [
+        "Công nghệ kỹ thuật cơ khí"
+      ]
+    },
+    {
+      "id": "huit_business",
+      "name": "Khoa Quản trị Kinh doanh",
+      "code": "BUS",
+      "website": null,
+      "programs": 
+      [
+        "Quản trị kinh doanh",
+        "Marketing"
+      ]
+    },
+    {
+      "id": "huit_it",
+      "name": "Khoa Công nghệ Thông tin",
+      "code": "IT",
+      "website": null,
+      "programs": 
+      [
+        "Công nghệ thông tin"
+      ]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+},
+{
+  "id": "uth",
+  "code": "UTH",
+  "name": "Trường Đại học Giao thông Vận tải TP.HCM",
+  "logo_url": null,
+  "description": "Trường Đại học Giao thông Vận tải TP.HCM đào tạo chuyên sâu về giao thông, vận tải, kỹ thuật, logistics và hàng hải.",
+  "type": "public",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://ut.edu.vn",
+    "email": "ut-hcmc@ut.edu.vn",
+    "phone": "+84 28 3899 1373"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "2 Võ Oanh, Quận Bình Thạnh, TP.HCM",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "uth_transport",
+      "name": "Khoa Vận tải",
+      "code": "TRANS",
+      "website": null,
+      "programs": 
+      [
+        "Khai thác vận tải",
+        "Logistics và quản lý chuỗi cung ứng"
+      ]
+    },
+    {
+      "id": "uth_construction",
+      "name": "Khoa Công trình",
+      "code": "CONS",
+      "website": null,
+      "programs": 
+      [
+        "Kỹ thuật xây dựng công trình giao thông"
+      ]
+    },
+    {
+      "id": "uth_mechanical",
+      "name": "Khoa Cơ khí",
+      "code": "ME",
+      "website": null,
+      "programs": 
+      [
+        "Kỹ thuật cơ khí"
+      ]
+    },
+    {
+      "id": "uth_it",
+      "name": "Khoa Công nghệ Thông tin",
+      "code": "IT",
+      "website": null,
+      "programs": 
+      [
+        "Công nghệ thông tin"
+      ]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+},
+{
+  "id": "hcmus",
+  "code": "HCMUS",
+  "name": "Trường Đại học Khoa học Tự nhiên",
+  "logo_url": null,
+  "description": "Trường Đại học Khoa học Tự nhiên là trường đào tạo và nghiên cứu hàng đầu về khoa học cơ bản tại Việt Nam.",
+  "type": "public",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://www.hcmus.edu.vn",
+    "email": "info@hcmus.edu.vn",
+    "phone": "+84 28 6288 4499"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở Nguyễn Văn Cừ",
+      "address": "227 Nguyễn Văn Cừ, Quận 5, TP.HCM",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "hcmus_math",
+      "name": "Khoa Toán - Tin học",
+      "code": "MTH",
+      "website": null,
+      "programs": 
+      [
+        "Toán học",
+        "Toán ứng dụng",
+        "Khoa học máy tính",
+        "Khoa học dữ liệu"
+      ]
+    },
+    {
+      "id": "hcmus_physics",
+      "name": "Khoa Vật lý - Vật lý kỹ thuật",
+      "code": "PHY",
+      "website": null,
+      "programs": 
+      [
+        "Vật lý học",
+        "Vật lý kỹ thuật"
+      ]
+    },
+    {
+      "id": "hcmus_chemistry",
+      "name": "Khoa Hóa học",
+      "code": "CHE",
+      "website": null,
+      "programs": 
+      [
+        "Hóa học",
+        "Hóa dược"
+      ]
+    },
+    {
+      "id": "hcmus_biology",
+      "name": "Khoa Sinh học - Công nghệ Sinh học",
+      "code": "BIO",
+      "website": null,
+      "programs": 
+      [
+        "Sinh học",
+        "Công nghệ sinh học"
+      ]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+},
+{
+  "id": "ussh",
+  "code": "USSH",
+  "name": "Trường Đại học Khoa học Xã hội và Nhân văn",
+  "logo_url": null,
+  "description": "Trường Đại học Khoa học Xã hội và Nhân văn đào tạo chuyên sâu về các lĩnh vực khoa học xã hội, nhân văn, ngôn ngữ và truyền thông.",
+  "type": "public",
+  "country": "VN",
+
+  "contact": {
+    "website": "https://hcmussh.edu.vn",
+    "email": "oce@hcmussh.edu.vn",
+    "phone": "+84 28 3829 3828"
+  },
+
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "10-12 Đinh Tiên Hoàng, Quận 1, TP.HCM",
+      "is_main": true
+    }
+  ],
+
+  "faculties": [
+    {
+      "id": "ussh_languages",
+      "name": "Khoa Ngôn ngữ học",
+      "code": "LANG",
+      "website": null,
+      "programs": 
+      [
+        "Ngôn ngữ học",
+        "Ngôn ngữ Anh",
+        "Ngôn ngữ Trung Quốc",
+        "Ngôn ngữ Nhật Bản"
+      ]
+    },
+    {
+      "id": "ussh_social",
+      "name": "Khoa Xã hội học",
+      "code": "SOC",
+      "website": null,
+      "programs": 
+      [
+        "Xã hội học",
+        "Công tác xã hội"
+      ]
+    },
+    {
+      "id": "ussh_psychology",
+      "name": "Khoa Tâm lý học",
+      "code": "PSY",
+      "website": null,
+      "programs": 
+      [
+        "Tâm lý học"
+      ]
+    },
+    {
+      "id": "ussh_journalism",
+      "name": "Khoa Báo chí - Truyền thông",
+      "code": "JRN",
+      "website": null,
+      "programs": 
+      [
+        "Báo chí",
+        "Truyền thông đa phương tiện"
+      ]
+    }
+  ],
+
+  "metadata": {
+    "verified": true,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+},
+{
+  "id": "vlu",
+  "code": "VLU",
+  "name": "Trường Đại học Văn Lang",
+  "logo_url": null,
+  "description": "Trường Đại học Văn Lang là trường đại học tư thục đa ngành tại TP.HCM, đào tạo các lĩnh vực kỹ thuật, công nghệ, kinh tế, xã hội, nghệ thuật và sức khỏe.",
+  
+  "type": "private",
+  "country": "VN",
+  
+  "contact": {
+    "website": "https://www.vlu.edu.vn",
+    "email": "truyenthong@vlu.edu.vn",
+    "phone": "+84 28 7109 9221"
+  },
+  
+  "campuses": [
+    {
+      "name": "Cơ sở chính",
+      "address": "69/68 Đặng Thùy Trâm, Phường 13, Quận Bình Thạnh, TP.HCM",
+      "is_main": true
+    }
+  ],
+  
+  "faculties": [
+    {
+      "id": "vlu_it",
+      "name": "Khoa Công nghệ Thông tin",
+      "code": "IT",
+      "website": null,
+      "programs": 
+      [
+        "Công nghệ thông tin",
+        "Kỹ thuật phần mềm",
+        "Khoa học dữ liệu",
+        "Hệ thống thông tin"
+      ]
+    },
+    {
+      "id": "vlu_engineering",
+      "name": "Khoa Kỹ thuật",
+      "code": "ENG",
+      "website": null,
+      "programs": 
+      [
+        "Kỹ thuật xây dựng",
+        "Kỹ thuật điện",
+        "Kỹ thuật điện tử - viễn thông",
+        "Kỹ thuật cơ điện tử"
+      ]
+    },
+    {
+      "id": "vlu_architecture",
+      "name": "Khoa Kiến trúc",
+      "code": "ARC",
+      "website": null,
+      "programs": 
+      [
+        "Kiến trúc",
+        "Thiết kế nội thất",
+        "Thiết kế đô thị"
+      ]
+    },
+    {
+      "id": "vlu_business",
+      "name": "Khoa Kinh tế - Quản trị",
+      "code": "BUS",
+      "website": null,
+      "programs": 
+      [
+        "Quản trị kinh doanh",
+        "Marketing",
+        "Tài chính - Ngân hàng",
+        "Kế toán",
+        "Kinh doanh quốc tế"
+      ]
+    },
+    {
+      "id": "vlu_law",
+      "name": "Khoa Luật",
+      "code": "LAW",
+      "website": null,
+      "programs": 
+      [
+        "Luật",
+        "Luật kinh tế"
+      ]
+    },
+    {
+      "id": "vlu_social",
+      "name": "Khoa Khoa học Xã hội và Nhân văn",
+      "code": "SSH",
+      "website": null,
+      "programs": 
+      [
+        "Quan hệ công chúng",
+        "Xã hội học",
+        "Tâm lý học",
+        "Việt Nam học"
+      ]
+    },
+    {
+      "id": "vlu_art_design",
+      "name": "Khoa Mỹ thuật và Thiết kế",
+      "code": "ART",
+      "website": null,
+      "programs": 
+      [
+        "Thiết kế đồ họa",
+        "Thiết kế thời trang",
+        "Thiết kế công nghiệp"
+      ]
+    },
+    {
+      "id": "vlu_health",
+      "name": "Khoa Khoa học Sức khỏe",
+      "code": "HLT",
+      "website": null,
+      "programs": 
+      [
+        "Điều dưỡng",
+        "Dinh dưỡng",
+        "Kỹ thuật xét nghiệm y học"
+      ]
+    },
+    {
+      "id": "vlu_language",
+      "name": "Khoa Ngoại ngữ",
+      "code": "LANG",
+      "website": null,
+      "programs": 
+      [
+        "Ngôn ngữ Anh",
+        "Ngôn ngữ Trung Quốc",
+        "Ngôn ngữ Nhật Bản"
+      ]
+    }
+  ],
+  
+  "metadata": {
+    "verified": false,
+    "created_at": "2026-01-25",
+    "updated_at": "2026-01-25"
+  }
+}
+  ]
+}
