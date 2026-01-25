@@ -1,96 +1,45 @@
-# 🎓 Schools and Universities API
+# 🎓 Schools API
 
-> Community-driven open API for Vietnamese universities and colleges
+> Open API cho các trường đại học, cao đẳng tại Việt Nam
 
-🌐 **Live API:** https://apihoavan.xyz/openapi/
+🌐 **API:** https://apihoavan.xyz/openapi/
 
-📖 **Documentation:** https://apihoavan.xyz/openapi/docs
+📖 **Docs:** https://apihoavan.xyz/openapi/docs
 
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub release](https://img.shields.io/github/v/release/ZenithHawking/schools-api)](https://github.com/ZenithHawking/schools-api/releases)
 
 ---
 
-## 📖 Giới thiệu
-
-API công khai miễn phí cung cấp thông tin về các trường đại học, cao đẳng tại Việt Nam và các quốc gia khác. Dữ liệu được đóng góp và duy trì bởi cộng đồng.
-
-### ✨ Tính năng
-
-- ✅ RESTful API với FastAPI
-- ✅ Dữ liệu mở - Miễn phí sử dụng
-- ✅ Hỗ trợ tìm kiếm & lọc dữ liệu
-- ✅ Auto-generated documentation (Swagger UI)
-- ✅ Community-driven - Ai cũng có thể đóng góp
-
----
-
-## 🌐 Sử dụng API (Production)
+## 🚀 Sử dụng API
 
 ### Base URL
 ```
 https://apihoavan.xyz/openapi
 ```
 
-### 📚 API Endpoints
-
-#### Schools (Trường học)
+### Endpoints
 
 ```bash
-# Lấy danh sách tất cả trường
-GET https://apihoavan.xyz/openapi/api/v1/schools
+# Danh sách trường
+GET /api/v1/schools
 
-# Lấy chi tiết một trường
-GET https://apihoavan.xyz/openapi/api/v1/schools/{school_id}
+# Chi tiết trường
+GET /api/v1/schools/{school_id}
 
-# Tìm kiếm trường theo tên
-GET https://apihoavan.xyz/openapi/api/v1/schools?search=bách+khoa
+# Tìm kiếm
+GET /api/v1/schools?search=bách+khoa
 
-# Lọc theo loại trường (public/private)
-GET https://apihoavan.xyz/openapi/api/v1/schools?type=public
+# Lọc theo loại
+GET /api/v1/schools?type=public&country=VN
 
-# Lọc theo quốc gia
-GET https://apihoavan.xyz/openapi/api/v1/schools?country=VN
+# Danh sách khoa
+GET /api/v1/faculties
 
-# Lọc theo mã trường
-GET https://apihoavan.xyz/openapi/api/v1/schools?code=QTD
-
-# Lọc trường đã verify
-GET https://apihoavan.xyz/openapi/api/v1/schools?verified=true
-
-# Kết hợp nhiều filters
-GET https://apihoavan.xyz/openapi/api/v1/schools?country=VN&type=public&verified=true
+# Khoa của một trường
+GET /api/v1/schools/{school_id}/faculties
 ```
 
-#### Faculties (Khoa)
-
-```bash
-# Lấy danh sách tất cả khoa
-GET https://apihoavan.xyz/openapi/api/v1/faculties
-
-# Lấy chi tiết một khoa
-GET https://apihoavan.xyz/openapi/api/v1/faculties/{faculty_id}
-
-# Lấy danh sách khoa của một trường
-GET https://apihoavan.xyz/openapi/api/v1/schools/{school_id}/faculties
-
-# Lọc khoa theo trường
-GET https://apihoavan.xyz/openapi/api/v1/faculties?school_id=hcmus
-
-# Tìm kiếm khoa
-GET https://apihoavan.xyz/openapi/api/v1/faculties?search=toán
-```
-
-#### Campuses (Cơ sở)
-
-```bash
-# Lấy danh sách cơ sở của một trường
-GET https://apihoavan.xyz/openapi/api/v1/schools/{school_id}/campuses
-```
-
-### 📋 Ví dụ Response
-
-#### GET /api/v1/schools
+### Response Example
 
 ```json
 [
@@ -98,351 +47,208 @@ GET https://apihoavan.xyz/openapi/api/v1/schools/{school_id}/campuses
     "id": "hcmus",
     "code": "QTD",
     "name": "Trường Đại học Khoa học Tự nhiên",
-    "logo_url": null,
-    "description": "Trường Đại học Khoa học Tự nhiên...",
     "type": "public",
     "country": "VN",
     "contact": {
       "website": "https://www.hcmus.edu.vn",
-      "email": "dhkhtn@hcmus.edu.vn",
-      "phone": "+84 28 38 351 096"
+      "email": "dhkhtn@hcmus.edu.vn"
     },
-    "campuses": [
-      {
-        "id": 1,
-        "name": "Cơ sở 1",
-        "address": "227 Nguyễn Văn Cừ, Quận 5, TP.HCM",
-        "is_main": true,
-        "school_id": "hcmus"
-      }
-    ],
-    "faculties": [
-      {
-        "id": "hcmus_math_cs",
-        "name": "Khoa Toán - Tin học",
-        "code": "MTH",
-        "website": "https://www.math.hcmus.edu.vn",
-        "programs": ["Toán học", "Khoa học máy tính"],
-        "school_id": "hcmus"
-      }
-    ],
-    "verified": true,
-    "created_at": "2025-01-19",
-    "updated_at": "2025-01-19"
+    "campuses": [...],
+    "faculties": [...]
   }
 ]
 ```
 
-### 🔗 Interactive Documentation
-
-Truy cập Swagger UI để test API trực tiếp trên browser:
-
-👉 **https://apihoavan.xyz/openapi/docs**
-
 ---
 
-## 🚀 Deploy từ GitHub Release
+## 💻 Development
 
-### Yêu cầu
-
-- Ubuntu 20.04+ hoặc Debian-based Linux
-- Python 3.8+
-- 100MB disk space
-- Quyền sudo (để install systemd service)
-
-### Bước 1: Tải Release
+### Quick Start
 
 ```bash
-# Tải release mới nhất
-wget https://github.com/ZenithHawking/schools-api/releases/latest/download/vietnam-schools-api-v1.0.3.tar.gz
-
-# Hoặc tải version cụ thể
-wget https://github.com/ZenithHawking/schools-api/releases/download/v1.0.3/vietnam-schools-api-v1.0.3.tar.gz
-```
-
-### Bước 2: Giải nén
-
-```bash
-tar -xzf vietnam-schools-api-v1.0.3.tar.gz
-cd vietnam-schools-api
-```
-
-### Bước 3: Setup
-
-```bash
-# Chạy script setup tự động
-bash setup.sh
-```
-
-Script này sẽ:
-- ✅ Tạo Python virtual environment
-- ✅ Cài đặt dependencies
-- ✅ Import dữ liệu vào database
-- ✅ Tạo file `schools.db`
-
-### Bước 4: Install Service (Optional)
-
-```bash
-# Cài đặt như systemd service (chạy tự động khi khởi động)
-sudo bash install-service.sh
-```
-
-Service sẽ:
-- ✅ Auto-start khi server khởi động
-- ✅ Auto-restart nếu bị crash
-- ✅ Chạy ở background
-
-### Bước 5: Kiểm tra
-
-```bash
-# Kiểm tra service status
-sudo systemctl status vietnam-schools-api
-
-# Xem logs
-sudo journalctl -u vietnam-schools-api -f
-
-# Test API
-curl http://localhost:8000/api/v1/schools
-```
-
-### Cấu hình Nginx/Cloudflare Tunnel
-
-Nếu muốn expose API ra internet, cấu hình reverse proxy:
-
-**Nginx:**
-```nginx
-location /openapi/ {
-    proxy_pass http://127.0.0.1:8000/;
-    proxy_set_header Host $host;
-    proxy_set_header X-Real-IP $remote_addr;
-}
-```
-
-**Cloudflare Tunnel:**
-```yaml
-ingress:
-  - hostname: yourdomain.com
-    path: /openapi/*
-    service: http://localhost:8000
-```
-
-### Update Version Mới
-
-```bash
-# Stop service
-sudo systemctl stop vietnam-schools-api
-
-# Backup version cũ
-mv vietnam-schools-api vietnam-schools-api.backup
-
-# Tải version mới
-wget https://github.com/ZenithHawking/schools-api/releases/download/v1.0.4/vietnam-schools-api-v1.0.4.tar.gz
-tar -xzf vietnam-schools-api-v1.0.4.tar.gz
-cd vietnam-schools-api
-
-# Setup & restart
-bash setup.sh
-sudo bash install-service.sh
-```
-
----
-
-## 💻 Development (Local)
-
-### Clone Repository
-
-```bash
+# Clone repo
 git clone https://github.com/ZenithHawking/schools-api.git
 cd schools-api
-```
 
-### Setup Environment
-
-```bash
-# Tạo virtual environment
+# Setup
 python3 -m venv venv
-
-# Activate (Windows)
-venv\Scripts\activate
-
-# Activate (Linux/macOS)
 source venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
-```
 
-### Import Data
-
-```bash
+# Import data
 python scripts/import_data.py
+
+# Run server
+uvicorn app.main:app --reload --port 8000
 ```
 
-### Run Development Server
+### Tech Stack
 
-```bash
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-API sẽ chạy tại:
-- API: http://localhost:8000/api/v1/schools
-- Docs: http://localhost:8000/docs
+- **FastAPI** 0.109.0
+- **SQLAlchemy** 2.0
+- **SQLite** (có thể dùng PostgreSQL)
+- **Uvicorn**
 
 ---
 
-## 🤝 Đóng góp dữ liệu
+## 🤝 Đóng góp
 
-Chúng tôi hoan nghênh mọi đóng góp từ cộng đồng!
+### Cách 1: Edit trên GitHub (Dễ nhất)
 
-### Thêm trường mới
+1. Vào file: [`data/schools.json`](https://github.com/ZenithHawking/schools-api/blob/main/data/schools.json)
+2. Click nút **✏️ Edit**
+3. Thêm thông tin trường theo format
+4. Click **"Propose changes"** → Tạo Pull Request
 
-1. **Fork** repository này
-2. **Edit** file `data/schools.json`
-3. Thêm thông tin trường theo template bên dưới
-4. **Commit** với message rõ ràng
-5. Tạo **Pull Request**
+### Cách 2: Fork & PR
+
+```bash
+# Fork repo → Clone về máy
+git clone https://github.com/YOUR_USERNAME/schools-api.git
+
+# Tạo branch mới
+git checkout -b add-school-abc
+
+# Thêm data vào data/*.json
+# Commit & push
+git add data/
+git commit -m "Add: Trường ABC"
+git push origin add-school-abc
+
+# Tạo Pull Request trên GitHub
+```
 
 ### Template trường mới
 
 ```json
 {
-  "id": "school_slug",
-  "code": "XXX",
+  "id": "school-slug",
+  "code": "ABC",
   "name": "Tên trường đầy đủ",
-  "logo_url": null,
-  "description": "Mô tả về trường (2-3 câu)",
-  
+  "description": "Mô tả ngắn gọn",
   "type": "public",
   "country": "VN",
-  
   "contact": {
     "website": "https://...",
-    "email": "contact@...",
-    "phone": "+84 ..."
+    "email": "contact@..."
   },
-  
   "campuses": [
     {
-      "name": "Cơ sở 1",
-      "address": "Số nhà, Đường, Quận/Huyện, Tỉnh/TP",
+      "name": "Cơ sở chính",
+      "address": "Địa chỉ đầy đủ",
       "is_main": true
     }
   ],
-  
   "faculties": [
     {
-      "id": "faculty_slug",
+      "id": "faculty-slug",
       "name": "Tên khoa",
       "code": "XX",
-      "website": "https://...",
-      "programs": ["Ngành 1", "Ngành 2", "Ngành 3"]
+      "programs": ["Ngành 1", "Ngành 2"]
     }
   ],
-  
   "metadata": {
     "verified": false,
-    "created_at": "2025-01-19",
-    "updated_at": "2025-01-19"
+    "created_at": "2026-01-26",
+    "updated_at": "2026-01-26"
   }
 }
 ```
 
-### Quy tắc đóng góp
+### Quy tắc
 
-- ✅ Thông tin chính xác, có nguồn
+- ✅ Thông tin chính xác
 - ✅ Follow đúng format JSON
-- ✅ Tên trường phải chính thức
-- ✅ Website & email phải valid
 - ✅ Test local trước khi PR
+- ✅ Một trường một PR
 
 ---
 
-## 📊 Schema Database
+## 📂 Cấu trúc Data
 
-### School Table
-- `id` (string, PK) - Unique identifier (slug format)
-- `code` (string, unique) - Mã trường (dùng trong tuyển sinh)
-- `name` (string) - Tên trường đầy đủ
-- `logo_url` (string, nullable) - URL logo trường
-- `description` (text) - Mô tả về trường
-- `type` (string) - Loại trường: public/private
-- `country` (string) - Mã quốc gia (ISO 3166)
-- `contact` (JSON) - {website, email, phone}
-- `verified` (boolean) - Đã được verify chưa
-- `created_at`, `updated_at` (string) - Timestamps
+Bạn có thể:
+1. **Thêm vào file có sẵn:** `data/schools.json`
+2. **Tạo file mới:** `data/hanoi-schools.json`, `data/hcm-schools.json`...
 
-### Campus Table
-- `id` (int, PK, auto-increment)
-- `school_id` (string, FK → schools.id)
-- `name` (string) - Tên cơ sở
-- `address` (text) - Địa chỉ đầy đủ
-- `is_main` (boolean) - Cơ sở chính hay không
-
-### Faculty Table
-- `id` (string, PK) - Unique identifier
-- `school_id` (string, FK → schools.id)
-- `name` (string) - Tên khoa
-- `code` (string) - Mã khoa
-- `website` (string) - Website khoa
-- `programs` (JSON) - ["Ngành 1", "Ngành 2", ...]
+Script import tự động đọc **tất cả file `.json`** trong thư mục `data/`.
 
 ---
 
-## 🗂️ Cấu trúc Project
+## 🚀 Deploy
 
-```
-schools-api/
-├── .github/
-│   └── workflows/
-│       └── release.yml       # GitHub Actions workflow
-├── app/
-│   ├── __init__.py
-│   ├── main.py              # FastAPI app + routes
-│   ├── models.py            # SQLAlchemy models
-│   ├── schemas.py           # Pydantic schemas
-│   └── database.py          # Database connection
-├── data/
-│   └── schools.json         # Dữ liệu nguồn (JSON)
-├── scripts/
-│   └── import_data.py       # Script import JSON → SQLite
-├── .gitignore
-├── README.md
-└── requirements.txt
+### Production Server
+
+```bash
+# Clone repo
+git clone https://github.com/ZenithHawking/schools-api.git
+cd schools-api
+
+# Setup
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+python scripts/import_data.py
+
+# Tạo systemd service
+sudo nano /etc/systemd/system/schools-api.service
 ```
 
+**Service file:**
+```ini
+[Unit]
+Description=Schools API
+After=network.target
+
+[Service]
+Type=simple
+User=your-user
+WorkingDirectory=/path/to/schools-api
+Environment="PATH=/path/to/schools-api/venv/bin"
+ExecStart=/path/to/schools-api/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 5001
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```bash
+# Enable & start
+sudo systemctl daemon-reload
+sudo systemctl enable schools-api
+sudo systemctl start schools-api
+```
+
+### Update Data
+
+```bash
+cd ~/schools-api
+git pull origin main
+source venv/bin/activate
+python scripts/import_data.py
+sudo systemctl restart schools-api
+```
+
 ---
 
-## 🛠️ Tech Stack
+## 📊 Database Schema
 
-- **Backend:** FastAPI 0.109.0
-- **Database:** SQLite (development), PostgreSQL (production recommended)
-- **ORM:** SQLAlchemy 2.0
-- **Validation:** Pydantic 2.5
-- **Server:** Uvicorn
-- **CI/CD:** GitHub Actions
+| Table | Key Fields |
+|-------|------------|
+| **schools** | id, code, name, type, country |
+| **faculties** | id, school_id, name, programs |
+| **campuses** | id, school_id, name, address |
 
 ---
 
 ## 📝 License
 
-MIT License
-
----
-
-## 🙏 Contributors
-
-Cảm ơn tất cả những người đã đóng góp vào dự án!
-
-[Contributor list](https://github.com/ZenithHawking/schools-api/graphs/contributors)
+MIT License - Free to use
 
 ---
 
 ## 📧 Contact
 
-- **Issues:** https://github.com/ZenithHawking/schools-api/issues
-- **Discussions:** https://github.com/ZenithHawking/schools-api/discussions
-- **API Status:** https://apihoavan.xyz/openapi/
+- **Issues:** [GitHub Issues](https://github.com/ZenithHawking/schools-api/issues)
+- **API:** https://apihoavan.xyz/openapi/
 
----
-
-Made by Zenith/Thanh Hải
+Made with ❤️ by Zenith
