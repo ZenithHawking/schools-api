@@ -15,62 +15,436 @@ jobs:
       
       - name: Create deployment package
         run: |
-          mkdir -p release/vietnam-schools-api
+          mkdir -p release/schools-api
           
-          cp -r app release/vietnam-schools-api/
-          cp -r data release/vietnam-schools-api/
-          cp -r scripts release/vietnam-schools-api/
-          cp requirements.txt release/vietnam-schools-api/
-          cp README.md release/vietnam-schools-api/
+          # Copy source code
+          cp -r app release/schools-api/
+          cp -r data release/schools-api/
+          cp -r scripts release/schools-api/
+          cp requirements.txt release/schools-api/
+          cp README.md release/schools-api/
           
-          cat > release/vietnam-schools-api/setup.sh << 'EOF'
+          # Create setup.sh with error handling
+          cat > release/schools-api/setup.sh << 'EOF'
           #!/bin/bash
-          echo "Setting up Vietnam Schools API..."
+          set -e  # Exit on error
+          
+          echo "==================================="
+          echo "  Schools API - Setup Script"
+          echo "==================================="
+          echo ""
+          
+          # Check Python version
+          if ! command -v python3 &> /dev/null; then
+              echo "ERROR: Python 3 is not installed!"
+              exit 1
+          fi
+          
+          PYTHON_VERSION=$(python3 --version | cut -d' ' -f2 | cut -d'.' -f1,2)
+          echo "✓ Python $PYTHON_VERSION detected"
+          
+          # Create virtual environment
+          echo "→ Creating virtual environment..."
           python3 -m venv venv
+          
+          # Activate venv
           source venv/bin/activate
+          
+          # Upgrade pip
+          echo "→ Upgrading pip..."
+          pip install --upgrade pip --quiet
+          
+          # Install dependencies
+          echo "→ Installing dependencies..."
           pip install -r requirements.txt --quiet
-          python scripts/import_data.py
-          echo "Setup complete!"
+          
+          # Import data and create database
+          echo "→ Importing data to database..."
+          if python scripts/import_data.py; then
+              echo "✓ Database created successfully!"
+          else
+              echo "ERROR: Failed to import data!"
+              exit 1
+          fi
+          
+          # Check if database was created
+          if [ -f "schools.db" ]; then
+              DB_SIZE=$(du -h schools.db | cut -f1)
+              echo "✓ Database file: schools.db ($DB_SIZE)"
+          else
+              echo "ERROR: Database file not found!"
+              exit 1
+          fi
+          
+          echo ""
+          echo "==================================="
+          echo "  Setup completed successfully!"
+          echo "==================================="
+          echo ""
+          echo "Next steps:"
+          echo "1. Install as service: bash install-service.sh"
+          echo "2. Or run manually: source venv/bin/activate && uvicorn app.main:app --host 0.0.0.0 --port 5000"
+          echo ""
           EOF
           
-          cat > release/vietnam-schools-api/install-service.sh << 'EOF'
+          # Create install-service.sh (CORRECTED VERSION)
+          cat > release/schools-api/install-service.sh << 'EOF'
           #!/bin/bash
+          set -e
+          
           INSTALL_DIR=$(pwd)
           USER=$(whoami)
+          SERVICE_NAME="schools-api"
           
-          cat << SVCEOF | sudo tee /etc/systemd/system/vietnam-schools-api.service > /dev/null
+          echo "==================================="
+          echo "  Installing Schools API Service"
+          echo "==================================="
+          echo ""
+          echo "Installation directory: $INSTALL_DIR"
+          echo "Service user: $USER"
+          echo ""
+          
+          # Create systemd service file
+          cat << SVCEOF | sudo tee /etc/systemd/system/${SERVICE_NAME}.service > /dev/null
           [Unit]
-          Description=Vietnam Schools API
+          Description=Schools API Service
           After=network.target
           
           [Service]
           Type=simple
           User=${USER}
           WorkingDirectory=${INSTALL_DIR}
-          Environment="PATH=${INSTALL_DIR}/venv/bin"
-          ExecStart=${INSTALL_DIR}/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --root-path /openapi
+          Environment="PATH=${INSTALL_DIR}/venv/bin:/usr/local/bin:/usr/bin:/bin"
+          ExecStart=${INSTALL_DIR}/venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 5000
           Restart=always
           RestartSec=10
+          StandardOutput=journal
+          StandardError=journal
           
           [Install]
           WantedBy=multi-user.target
           SVCEOF
           
+          echo "✓ Service file created"
+          
+          # Reload systemd
+          echo "→ Reloading systemd daemon..."
           sudo systemctl daemon-reload
-          sudo systemctl enable vietnam-schools-api
-          sudo systemctl start vietnam-schools-api
-          echo "Service installed!"
+          
+          # Enable service
+          echo "→ Enabling service..."
+          sudo systemctl enable ${SERVICE_NAME}
+          
+          # Start service
+          echo "→ Starting service..."
+          sudo systemctl start ${SERVICE_NAME}
+          
+          # Wait a bit for service to start
+          sleep 2
+          
+          # Check status
+          if sudo systemctl is-active --quiet ${SERVICE_NAME}; then
+              echo ""
+              echo "==================================="
+              echo "  ✓ Service installed successfully!"
+              echo "==================================="
+              echo ""
+              echo "Service status:"
+              sudo systemctl status ${SERVICE_NAME} --no-pager -l
+              echo ""
+              echo "Useful commands:"
+              echo "  - Check status: sudo systemctl status ${SERVICE_NAME}"
+              echo "  - View logs: sudo journalctl -u ${SERVICE_NAME} -f"
+              echo "  - Restart: sudo systemctl restart ${SERVICE_NAME}"
+              echo "  - Stop: sudo systemctl stop ${SERVICE_NAME}"
+              echo ""
+              echo "API should be available at: http://localhost:5000"
+              echo "With Cloudflare Tunnel: https://apihoavan.xyz/openapi/schoolapi/"
+          else
+              echo ""
+              echo "ERROR: Service failed to start!"
+              echo "Check logs: sudo journalctl -u ${SERVICE_NAME} -n 50"
+              exit 1
+          fi
           EOF
           
-          chmod +x release/vietnam-schools-api/*.sh
+          # Create update-app.sh
+          cat > release/schools-api/update-app.sh << 'EOF'
+          #!/bin/bash
+          set -e
           
+          echo "==================================="
+          echo "  Updating Schools API"
+          echo "==================================="
+          echo ""
+          
+          # Stop service
+          echo "→ Stopping service..."
+          sudo systemctl stop schools-api
+          
+          # Activate venv
+          source venv/bin/activate
+          
+          # Update dependencies
+          echo "→ Updating dependencies..."
+          pip install -r requirements.txt --upgrade --quiet
+          
+          # Backup database
+          if [ -f "schools.db" ]; then
+              BACKUP_FILE="schools.db.backup.$(date +%Y%m%d_%H%M%S)"
+              echo "→ Backing up database to $BACKUP_FILE"
+              cp schools.db "$BACKUP_FILE"
+          fi
+          
+          # Re-import data (optional - uncomment if needed)
+          # echo "→ Re-importing data..."
+          # python scripts/import_data.py
+          
+          # Start service
+          echo "→ Starting service..."
+          sudo systemctl start schools-api
+          
+          # Check status
+          sleep 2
+          if sudo systemctl is-active --quiet schools-api; then
+              echo ""
+              echo "✓ Update completed successfully!"
+              echo ""
+              sudo systemctl status schools-api --no-pager
+          else
+              echo ""
+              echo "ERROR: Service failed to start after update!"
+              echo "Restoring from backup..."
+              if [ -f "$BACKUP_FILE" ]; then
+                  cp "$BACKUP_FILE" schools.db
+              fi
+              exit 1
+          fi
+          EOF
+          
+          # Create DEPLOY_GUIDE.md
+          cat > release/schools-api/DEPLOY_GUIDE.md << 'EOF'
+          # 🚀 Schools API - Deployment Guide
+          
+          ## 📋 Prerequisites
+          
+          - Ubuntu 20.04+ / Debian-based Linux
+          - Python 3.8+
+          - Sudo access
+          - Cloudflare Tunnel configured (optional)
+          
+          ## 🎯 Quick Start
+          
+          ### 1. Download Release
+          
+          ```bash
+          # Download latest release
+          cd /home/your-user
+          wget https://github.com/ZenithHawking/schools-api/releases/latest/download/schools-api-VERSION.tar.gz
+          
+          # Extract
+          tar -xzf schools-api-VERSION.tar.gz
+          cd schools-api
+          ```
+          
+          ### 2. Setup Environment
+          
+          ```bash
+          # Run setup script
+          bash setup.sh
+          ```
+          
+          This will:
+          - Create Python virtual environment
+          - Install dependencies
+          - Import data and create SQLite database
+          
+          ### 3. Install as System Service
+          
+          ```bash
+          # Install systemd service
+          bash install-service.sh
+          ```
+          
+          The service will:
+          - Auto-start on boot
+          - Auto-restart on crash
+          - Run on port 5000
+          - Log to systemd journal
+          
+          ### 4. Configure Cloudflare Tunnel
+          
+          Edit `~/.cloudflared/config.yml`:
+          
+          ```yaml
+          tunnel: your-tunnel-id
+          credentials-file: /home/user/.cloudflared/xxxxx.json
+          
+          ingress:
+            - hostname: yourdomain.com
+              path: /openapi/schoolapi/*
+              service: http://localhost:5000
+            
+            # Other routes...
+            
+            - service: http_status:404
+          ```
+          
+          Restart cloudflared:
+          
+          ```bash
+          sudo systemctl restart cloudflared
+          ```
+          
+          ## 🔧 Service Management
+          
+          ```bash
+          # Check status
+          sudo systemctl status schools-api
+          
+          # View logs
+          sudo journalctl -u schools-api -f
+          
+          # Restart service
+          sudo systemctl restart schools-api
+          
+          # Stop service
+          sudo systemctl stop schools-api
+          
+          # Start service
+          sudo systemctl start schools-api
+          ```
+          
+          ## 🔄 Update Application
+          
+          ```bash
+          cd /path/to/schools-api
+          
+          # Download new version code
+          # ... (git pull or download new release)
+          
+          # Run update script
+          bash update-app.sh
+          ```
+          
+          ## ✅ Verify Deployment
+          
+          ```bash
+          # Test locally
+          curl http://localhost:5000/
+          
+          # Test via Cloudflare Tunnel
+          curl https://yourdomain.com/openapi/schoolapi/
+          
+          # Check API docs
+          # Open: https://yourdomain.com/openapi/schoolapi/docs
+          ```
+          
+          ## 🐛 Troubleshooting
+          
+          ### Service won't start
+          
+          ```bash
+          # Check logs
+          sudo journalctl -u schools-api -n 50 --no-pager
+          
+          # Check if port 5000 is available
+          sudo netstat -tulpn | grep 5000
+          
+          # Test manual run
+          cd /path/to/schools-api
+          source venv/bin/activate
+          uvicorn app.main:app --host 127.0.0.1 --port 5000
+          ```
+          
+          ### Database issues
+          
+          ```bash
+          # Re-import data
+          cd /path/to/schools-api
+          source venv/bin/activate
+          python scripts/import_data.py
+          ```
+          
+          ### Permission issues
+          
+          ```bash
+          # Fix ownership
+          sudo chown -R your-user:your-user /path/to/schools-api
+          
+          # Fix permissions
+          chmod +x *.sh
+          ```
+          
+          ## 📊 Monitoring
+          
+          ```bash
+          # Watch logs in real-time
+          sudo journalctl -u schools-api -f
+          
+          # Check resource usage
+          systemctl status schools-api
+          
+          # Check database size
+          ls -lh schools.db
+          ```
+          
+          ## 🔒 Security Notes
+          
+          - API runs on localhost:5000 (not exposed directly)
+          - Access via Cloudflare Tunnel (encrypted)
+          - SQLite database stored locally
+          - Service runs as non-root user
+          
+          ## 📞 Support
+          
+          - GitHub Issues: https://github.com/ZenithHawking/schools-api/issues
+          - API Docs: https://apihoavan.xyz/openapi/schoolapi/docs
+          EOF
+          
+          # Make scripts executable
+          chmod +x release/schools-api/*.sh
+          
+          # Create tarball
           cd release
-          tar -czf vietnam-schools-api-${{ github.ref_name }}.tar.gz vietnam-schools-api/
+          tar -czf schools-api-${{ github.ref_name }}.tar.gz schools-api/
       
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: release/vietnam-schools-api-${{ github.ref_name }}.tar.gz
-          body: "Vietnam Schools API ${{ github.ref_name }} - Ready to deploy"
+          files: release/schools-api-${{ github.ref_name }}.tar.gz
+          body: |
+            # 🎓 Schools API ${{ github.ref_name }}
+            
+            ## ✨ What's New
+            - ✅ Configured for port 5000
+            - ✅ Subpath support: /openapi/schoolapi/
+            - ✅ Cloudflare Tunnel ready
+            - ✅ Auto-setup scripts included
+            - ✅ Systemd service with auto-restart
+            
+            ## 📦 Package Contents
+            - Source code (FastAPI app)
+            - SQLite database (auto-generated from JSON)
+            - Setup scripts (automated installation)
+            - Systemd service file
+            - Deployment guide
+            
+            ## 🚀 Quick Deploy
+            ```bash
+            wget https://github.com/ZenithHawking/schools-api/releases/download/${{ github.ref_name }}/schools-api-${{ github.ref_name }}.tar.gz
+            tar -xzf schools-api-${{ github.ref_name }}.tar.gz
+            cd schools-api
+            bash setup.sh
+            bash install-service.sh
+            ```
+            
+            ## 📖 Documentation
+            See DEPLOY_GUIDE.md in the package for detailed instructions.
+            
+            ## 🌐 API Endpoints
+            - Root: https://apihoavan.xyz/openapi/schoolapi/
+            - Docs: https://apihoavan.xyz/openapi/schoolapi/docs
+            - Schools: https://apihoavan.xyz/openapi/schoolapi/api/v1/schools
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
