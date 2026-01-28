@@ -1,13 +1,20 @@
-from fastapi import FastAPI, Depends, HTTPException, Query
+from fastapi import FastAPI, Depends, HTTPException, Query, Request
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from typing import List, Optional
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.errors import RateLimitExceeded
+from slowapi.util import get_remote_address
+
 import app.models as models
 import app.schemas as schemas
 from app.database import engine, get_db
 
 # Create tables
 models.Base.metadata.create_all(bind=engine)
+
+# ============= RATE LIMITER SETUP =============
+limiter = Limiter(key_func=get_remote_address)
 
 # FastAPI app
 app = FastAPI(
@@ -17,12 +24,16 @@ app = FastAPI(
     version="1.0.0",
     contact={
         "name": "Vietnam Schools API",
-        "url": "https://github.com/yourusername/vietnam-schools-api",
+        "url": "https://github.com/ZenithHawking/schools-api",
     },
     license_info={
         "name": "MIT",
     },
 )
+
+# Attach rate limiter to app
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 
 @app.get("/", tags=["Root"])
@@ -36,14 +47,16 @@ def root():
             "schools": "/api/v1/schools",
             "faculties": "/api/v1/faculties"
         },
-        "github": "https://github.com/yourusername/vietnam-schools-api"
+        "github": "https://github.com/ZenithHawking/schools-api"
     }
 
 
 # ============= SCHOOLS ENDPOINTS =============
 
 @app.get("/api/v1/schools", response_model=List[schemas.School], tags=["Schools"])
+@limiter.limit("100/minute")
 def list_schools(
+    request: Request,
     skip: int = Query(0, ge=0, description="Number of records to skip"),
     limit: int = Query(100, ge=1, le=500, description="Max number of records to return"),
     code: Optional[str] = Query(None, description="Filter by exact school code"),
@@ -53,7 +66,7 @@ def list_schools(
     search: Optional[str] = Query(None, description="Search in school name or code"),
     db: Session = Depends(get_db)
 ):
-    """Get list of schools with filters"""
+    """Get list of schools with filters (Rate limit: 100/minute)"""
     query = db.query(models.School)
     
     # Apply filters
@@ -78,8 +91,13 @@ def list_schools(
 
 
 @app.get("/api/v1/schools/{school_id}", response_model=schemas.School, tags=["Schools"])
-def get_school(school_id: str, db: Session = Depends(get_db)):
-    """Get school details by ID"""
+@limiter.limit("200/minute")
+def get_school(
+    request: Request,
+    school_id: str, 
+    db: Session = Depends(get_db)
+):
+    """Get school details by ID (Rate limit: 200/minute)"""
     school = db.query(models.School).filter(models.School.id == school_id).first()
     if not school:
         raise HTTPException(status_code=404, detail=f"School with id '{school_id}' not found")
@@ -87,8 +105,13 @@ def get_school(school_id: str, db: Session = Depends(get_db)):
 
 
 @app.post("/api/v1/schools", response_model=schemas.School, status_code=201, tags=["Schools"])
-def create_school(school: schemas.SchoolCreate, db: Session = Depends(get_db)):
-    """Create a new school"""
+@limiter.limit("10/minute")
+def create_school(
+    request: Request,
+    school: schemas.SchoolCreate, 
+    db: Session = Depends(get_db)
+):
+    """Create a new school (Rate limit: 10/minute)"""
     # Check if school ID already exists
     existing = db.query(models.School).filter(models.School.id == school.id).first()
     if existing:
@@ -144,8 +167,14 @@ def create_school(school: schemas.SchoolCreate, db: Session = Depends(get_db)):
 
 
 @app.put("/api/v1/schools/{school_id}", response_model=schemas.School, tags=["Schools"])
-def update_school(school_id: str, school: schemas.SchoolCreate, db: Session = Depends(get_db)):
-    """Update a school"""
+@limiter.limit("10/minute")
+def update_school(
+    request: Request,
+    school_id: str, 
+    school: schemas.SchoolCreate, 
+    db: Session = Depends(get_db)
+):
+    """Update a school (Rate limit: 10/minute)"""
     db_school = db.query(models.School).filter(models.School.id == school_id).first()
     if not db_school:
         raise HTTPException(status_code=404, detail=f"School with id '{school_id}' not found")
@@ -193,8 +222,13 @@ def update_school(school_id: str, school: schemas.SchoolCreate, db: Session = De
 
 
 @app.delete("/api/v1/schools/{school_id}", tags=["Schools"])
-def delete_school(school_id: str, db: Session = Depends(get_db)):
-    """Delete a school"""
+@limiter.limit("10/minute")
+def delete_school(
+    request: Request,
+    school_id: str, 
+    db: Session = Depends(get_db)
+):
+    """Delete a school (Rate limit: 10/minute)"""
     db_school = db.query(models.School).filter(models.School.id == school_id).first()
     if not db_school:
         raise HTTPException(status_code=404, detail=f"School with id '{school_id}' not found")
@@ -207,14 +241,16 @@ def delete_school(school_id: str, db: Session = Depends(get_db)):
 # ============= FACULTIES ENDPOINTS =============
 
 @app.get("/api/v1/faculties", response_model=List[schemas.FacultyList], tags=["Faculties"])
+@limiter.limit("50/minute")
 def list_faculties(
+    request: Request,
     skip: int = Query(0, ge=0),
     limit: int = Query(100, ge=1, le=500),
     school_id: Optional[str] = Query(None, description="Filter by school ID"),
     search: Optional[str] = Query(None, description="Search in faculty name or code"),
     db: Session = Depends(get_db)
 ):
-    """Get list of faculties with filters"""
+    """Get list of faculties with filters (Rate limit: 50/minute)"""
     query = db.query(models.Faculty)
     
     if school_id:
@@ -232,8 +268,13 @@ def list_faculties(
 
 
 @app.get("/api/v1/faculties/{faculty_id}", response_model=schemas.Faculty, tags=["Faculties"])
-def get_faculty(faculty_id: str, db: Session = Depends(get_db)):
-    """Get faculty details by ID"""
+@limiter.limit("200/minute")
+def get_faculty(
+    request: Request,
+    faculty_id: str, 
+    db: Session = Depends(get_db)
+):
+    """Get faculty details by ID (Rate limit: 200/minute)"""
     faculty = db.query(models.Faculty).filter(models.Faculty.id == faculty_id).first()
     if not faculty:
         raise HTTPException(status_code=404, detail=f"Faculty with id '{faculty_id}' not found")
@@ -241,8 +282,13 @@ def get_faculty(faculty_id: str, db: Session = Depends(get_db)):
 
 
 @app.get("/api/v1/schools/{school_id}/faculties", response_model=List[schemas.Faculty], tags=["Schools", "Faculties"])
-def get_school_faculties(school_id: str, db: Session = Depends(get_db)):
-    """Get all faculties of a specific school"""
+@limiter.limit("100/minute")
+def get_school_faculties(
+    request: Request,
+    school_id: str, 
+    db: Session = Depends(get_db)
+):
+    """Get all faculties of a specific school (Rate limit: 100/minute)"""
     # Check if school exists
     school = db.query(models.School).filter(models.School.id == school_id).first()
     if not school:
@@ -253,8 +299,13 @@ def get_school_faculties(school_id: str, db: Session = Depends(get_db)):
 
 
 @app.get("/api/v1/schools/{school_id}/campuses", response_model=List[schemas.Campus], tags=["Schools", "Campuses"])
-def get_school_campuses(school_id: str, db: Session = Depends(get_db)):
-    """Get all campuses of a specific school"""
+@limiter.limit("100/minute")
+def get_school_campuses(
+    request: Request,
+    school_id: str, 
+    db: Session = Depends(get_db)
+):
+    """Get all campuses of a specific school (Rate limit: 100/minute)"""
     # Check if school exists
     school = db.query(models.School).filter(models.School.id == school_id).first()
     if not school:
