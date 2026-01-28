@@ -13,6 +13,24 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
       
+      - name: Validate files before release
+        run: |
+          echo "🔍 Validating files..."
+          
+          # Check if slowapi is in requirements.txt
+          if ! grep -q "slowapi" requirements.txt; then
+            echo "❌ ERROR: slowapi missing in requirements.txt"
+            exit 1
+          fi
+          
+          # Check if main.py has rate limiting
+          if ! grep -q "from slowapi import" app/main.py; then
+            echo "❌ ERROR: slowapi not imported in main.py"
+            exit 1
+          fi
+          
+          echo "✅ All validations passed"
+      
       - name: Create deployment package
         run: |
           mkdir -p release/schools-api
@@ -55,7 +73,7 @@ jobs:
           pip install --upgrade pip --quiet
           
           # Install dependencies
-          echo "→ Installing dependencies..."
+          echo "→ Installing dependencies (including SlowAPI for rate limiting)..."
           pip install -r requirements.txt --quiet
           
           # Import data and create database
@@ -79,6 +97,7 @@ jobs:
           echo ""
           echo "==================================="
           echo "  Setup completed successfully!"
+          echo "  Rate limiting: Enabled (SlowAPI)"
           echo "==================================="
           echo ""
           echo "Next steps:"
@@ -87,7 +106,7 @@ jobs:
           echo ""
           EOF
           
-          # Create install-service.sh (CORRECTED VERSION)
+          # Create install-service.sh
           cat > release/schools-api/install-service.sh << 'EOF'
           #!/bin/bash
           set -e
@@ -159,7 +178,7 @@ jobs:
               echo "  - Stop: sudo systemctl stop ${SERVICE_NAME}"
               echo ""
               echo "API should be available at: http://localhost:5001"
-              echo "With Cloudflare Tunnel: https://apihoavan.xyz/openapi/schoolapi/"
+              echo "With Cloudflare Tunnel: https://apihoavan.xyz/openapi/"
           else
               echo ""
               echo "ERROR: Service failed to start!"
@@ -256,7 +275,7 @@ jobs:
           
           This will:
           - Create Python virtual environment
-          - Install dependencies
+          - Install dependencies (including SlowAPI for rate limiting)
           - Import data and create SQLite database
           
           ### 3. Install as System Service
@@ -271,8 +290,11 @@ jobs:
           - Auto-restart on crash
           - Run on port 5001
           - Log to systemd journal
+          - Rate limiting enabled
           
           ### 4. Configure Cloudflare Tunnel
+          
+          **Note:** Replace `yourdomain.com` with your actual domain.
           
           Edit `~/.cloudflared/config.yml`:
           
@@ -282,7 +304,7 @@ jobs:
           
           ingress:
             - hostname: yourdomain.com
-              path: /openapi/schoolapi/*
+              path: /openapi/*
               service: http://localhost:5001
             
             # Other routes...
@@ -294,6 +316,29 @@ jobs:
           
           ```bash
           sudo systemctl restart cloudflared
+          ```
+          
+          ## 🛡️ Rate Limiting
+          
+          The API has rate limiting enabled to prevent abuse:
+          
+          | Endpoint | Method | Limit |
+          |----------|--------|-------|
+          | `/api/v1/schools` | GET | 100/minute |
+          | `/api/v1/schools/{id}` | GET | 200/minute |
+          | `/api/v1/schools` | POST/PUT/DELETE | 10/minute |
+          | `/api/v1/faculties` | GET | 50/minute |
+          
+          Rate limits are per IP address and reset every minute.
+          
+          ### Test Rate Limiting
+          
+          ```bash
+          # This will trigger rate limit after 100 requests
+          for i in {1..105}; do 
+            curl https://yourdomain.com/openapi/api/v1/schools
+          done
+          # Requests 101-105 should return 429 Too Many Requests
           ```
           
           ## 🔧 Service Management
@@ -334,10 +379,13 @@ jobs:
           curl http://localhost:5001/
           
           # Test via Cloudflare Tunnel
-          curl https://yourdomain.com/openapi/schoolapi/
+          curl https://yourdomain.com/openapi/
           
           # Check API docs
-          # Open: https://yourdomain.com/openapi/schoolapi/docs
+          # Open: https://yourdomain.com/openapi/docs
+          
+          # Test rate limiting
+          for i in {1..105}; do curl https://yourdomain.com/openapi/api/v1/schools; done
           ```
           
           ## 🐛 Troubleshooting
@@ -387,6 +435,9 @@ jobs:
           
           # Check database size
           ls -lh schools.db
+          
+          # Monitor rate limiting (watch for 429 errors)
+          sudo journalctl -u schools-api -f | grep 429
           ```
           
           ## 🔒 Security Notes
@@ -395,11 +446,12 @@ jobs:
           - Access via Cloudflare Tunnel (encrypted)
           - SQLite database stored locally
           - Service runs as non-root user
+          - Rate limiting prevents DDoS and abuse
           
           ## 📞 Support
           
           - GitHub Issues: https://github.com/ZenithHawking/schools-api/issues
-          - API Docs: https://apihoavan.xyz/openapi/schoolapi/docs
+          - API Docs: https://apihoavan.xyz/openapi/docs
           EOF
           
           # Make scripts executable
@@ -417,18 +469,30 @@ jobs:
             # 🎓 Schools API ${{ github.ref_name }}
             
             ## ✨ What's New
+            - ✅ **Rate limiting implemented** (SlowAPI - no Redis required)
             - ✅ Configured for port 5001
-            - ✅ Subpath support: /openapi/schoolapi/
+            - ✅ Subpath support: /openapi/
             - ✅ Cloudflare Tunnel ready
             - ✅ Auto-setup scripts included
             - ✅ Systemd service with auto-restart
             
+            ## 🛡️ Rate Limits
+            
+            | Endpoint | Method | Limit |
+            |----------|--------|-------|
+            | `/api/v1/schools` | GET | **100/minute** |
+            | `/api/v1/schools/{id}` | GET | **200/minute** |
+            | `/api/v1/schools` | POST/PUT/DELETE | **10/minute** |
+            | `/api/v1/faculties` | GET | **50/minute** |
+            
+            Rate limits are per IP address to prevent abuse and ensure fair usage.
+            
             ## 📦 Package Contents
-            - Source code (FastAPI app)
+            - Source code (FastAPI app with rate limiting)
             - SQLite database (auto-generated from JSON)
             - Setup scripts (automated installation)
             - Systemd service file
-            - Deployment guide
+            - Deployment guide with rate limit testing
             
             ## 🚀 Quick Deploy
             ```bash
@@ -443,8 +507,25 @@ jobs:
             See DEPLOY_GUIDE.md in the package for detailed instructions.
             
             ## 🌐 API Endpoints
-            - Root: https://apihoavan.xyz/openapi/schoolapi/
-            - Docs: https://apihoavan.xyz/openapi/schoolapi/docs
-            - Schools: https://apihoavan.xyz/openapi/schoolapi/api/v1/schools
+            - Root: https://apihoavan.xyz/openapi/
+            - Docs: https://apihoavan.xyz/openapi/docs
+            - Schools: https://apihoavan.xyz/openapi/api/v1/schools
+            - Faculties: https://apihoavan.xyz/openapi/api/v1/faculties
+            
+            ## 🧪 Test Rate Limiting
+            ```powershell
+            # PowerShell
+            for ($i=1; $i -le 105; $i++) { 
+              curl https://apihoavan.xyz/openapi/api/v1/schools 
+            }
+            ```
+            ```bash
+            # Bash
+            for i in {1..105}; do 
+              curl https://apihoavan.xyz/openapi/api/v1/schools
+            done
+            ```
+            
+            Requests **101-105** should return `429 Too Many Requests` ⛔
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
