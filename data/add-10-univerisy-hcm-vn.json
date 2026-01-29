@@ -1,0 +1,1329 @@
+{
+  "schools": [
+{
+  "id": "uel",
+  "code": "UEL",
+  "name": "Trường Đại học Kinh tế – Luật",
+  "logo_url": null,
+  "description": "Trường Đại học Kinh tế – Luật, Đại học Quốc gia TP.HCM là trường đại học công lập hàng đầu trong lĩnh vực kinh tế, quản lý và luật tại Việt Nam.",
+  
+  "type": "public",
+  "country": "VN",
+  
+  "contact": {
+    "website": "https://www.uel.edu.vn",
+    "email": null,
+    "phone": null
+  },
+  
+  "campuses": [
+    {
+      "name": "Cơ sở Thủ Đức",
+      "address": "669 Quốc lộ 1A, Phường Linh Xuân, TP. Thủ Đức, TP.HCM",
+      "is_main": true
+    }
+  ],
+  
+  "faculties": [
+    {
+      "id": "uel_economics",
+      "name": "Khoa Kinh tế",
+      "code": "ECO",
+      "website": null,
+      "programs": [
+        "Kinh tế học",
+        "Kinh tế phát triển",
+        "Kinh tế công"
+      ]
+    },
+    {
+      "id": "uel_ier",
+      "name": "Khoa Kinh tế đối ngoại",
+      "code": "IER",
+      "website": null,
+      "programs": [
+        "Kinh tế đối ngoại",
+        "Kinh doanh quốc tế",
+        "Thương mại quốc tế"
+      ]
+    },
+    {
+      "id": "uel_finance",
+      "name": "Khoa Tài chính – Ngân hàng",
+      "code": "FB",
+      "website": null,
+      "programs": [
+        "Tài chính – Ngân hàng",
+        "Công nghệ tài chính (FinTech)",
+        "Đầu tư tài chính"
+      ]
+    },
+    {
+      "id": "uel_accounting",
+      "name": "Khoa Kế toán – Kiểm toán",
+      "code": "AA",
+      "website": null,
+      "programs": [
+        "Kế toán",
+        "Kiểm toán"
+      ]
+    },
+    {
+      "id": "uel_business",
+      "name": "Khoa Quản trị Kinh doanh",
+      "code": "BA",
+      "website": null,
+      "programs": [
+        "Quản trị Kinh doanh",
+        "Marketing",
+        "Quản trị du lịch và lữ hành"
+      ]
+    },
+    {
+      "id": "uel_is",
+      "name": "Khoa Hệ thống Thông tin",
+      "code": "IS",
+      "website": null,
+      "programs": [
+        "Hệ thống thông tin quản lý",
+        "Kinh doanh số",
+        "Phân tích dữ liệu kinh doanh"
+      ]
+    },
+    {
+      "id": "uel_law",
+      "name": "Khoa Luật",
+      "code": "LAW",
+      "website": null,
+      "programs": [
+        "Luật",
+        "Luật dân sự",
+        "Luật hành chính"
+      ]
+    },
+    {
+      "id": "uel_economic_law",
+      "name": "Khoa Luật Kinh tế",
+      "code": "EL",
+      "website": null,
+      "programs": [
+        "Luật Kinh tế",
+        "Luật Thương mại quốc tế",
+        "Luật Kinh doanh"
+      ]
+    },
+    {
+      "id": "uel_math_econ",
+      "name": "Khoa Toán Kinh tế",
+      "code": "ME",
+      "website": null,
+      "programs": [
+        "Toán Kinh tế",
+        "Thống kê kinh doanh",
+        "Phân tích định lượng"
+      ]
+    }
+  ],
+  
+  "metadata": {
+    "verified": true,
+    "created_at": "2025-01-29",
+    "updated_at": "2025-01-29"
+  }
+},
+{
+  "id": "ueh",
+  "code": "UEH",
+  "name": "Đại học Kinh tế Thành phố Hồ Chí Minh",
+  "logo_url": null,
+  "description": "Đại học Kinh tế TP.HCM là trường đại học công lập trọng điểm quốc gia, đào tạo đa ngành trong lĩnh vực kinh tế, quản lý, tài chính, kế toán, luật và hệ thống thông tin.",
+  
+  "type": "public",
+  "country": "VN",
+  
+  "contact": {
+    "website": "https://www.ueh.edu.vn",
+    "email": null,
+    "phone": null
+  },
+  
+  "campuses": [
+    {
+      "name": "Cơ sở Nguyễn Tri Phương",
+      "address": "59C Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+      "is_main": true
+    }
+  ],
+  
+  "faculties": [
+    {
+      "id": "ueh_economics",
+      "name": "Khoa Kinh tế",
+      "code": "ECO",
+      "website": null,
+      "programs": [
+        "Kinh tế học",
+        "Kinh tế phát triển",
+        "Kinh tế công"
+      ]
+    },
+    {
+      "id": "ueh_finance",
+      "name": "Khoa Tài chính",
+      "code": "FIN",
+      "website": null,
+      "programs": [
+        "Tài chính – Ngân hàng",
+        "Tài chính doanh nghiệp",
+        "Tài chính quốc tế"
+      ]
+    },
+    {
+      "id": "ueh_banking",
+      "name": "Khoa Ngân hàng",
+      "code": "BAN",
+      "website": null,
+      "programs": [
+        "Ngân hàng",
+        "Thị trường tiền tệ",
+        "Thanh toán quốc tế"
+      ]
+    },
+    {
+      "id": "ueh_accounting",
+      "name": "Khoa Kế toán",
+      "code": "ACC",
+      "website": null,
+      "programs": [
+        "Kế toán",
+        "Kế toán quản trị",
+        "Kế toán doanh nghiệp"
+      ]
+    },
+    {
+      "id": "ueh_auditing",
+      "name": "Khoa Kiểm toán",
+      "code": "AUD",
+      "website": null,
+      "programs": [
+        "Kiểm toán",
+        "Kiểm toán báo cáo tài chính"
+      ]
+    },
+    {
+      "id": "ueh_business",
+      "name": "Khoa Quản trị Kinh doanh",
+      "code": "BA",
+      "website": null,
+      "programs": [
+        "Quản trị Kinh doanh",
+        "Marketing",
+        "Quản trị nhân lực"
+      ]
+    },
+    {
+      "id": "ueh_is",
+      "name": "Khoa Hệ thống Thông tin Kinh tế",
+      "code": "IS",
+      "website": null,
+      "programs": [
+        "Hệ thống thông tin kinh tế",
+        "Phân tích dữ liệu kinh doanh",
+        "Kinh doanh số"
+      ]
+    },
+    {
+      "id": "ueh_math_stat",
+      "name": "Khoa Toán – Thống kê",
+      "code": "MS",
+      "website": null,
+      "programs": [
+        "Toán kinh tế",
+        "Thống kê kinh doanh",
+        "Phân tích định lượng"
+      ]
+    },
+    {
+      "id": "ueh_law",
+      "name": "Khoa Luật",
+      "code": "LAW",
+      "website": null,
+      "programs": [
+        "Luật",
+        "Luật kinh doanh",
+        "Luật thương mại"
+      ]
+    }
+  ],
+  
+  "metadata": {
+    "verified": true,
+    "created_at": "2025-01-29",
+    "updated_at": "2025-01-29"
+  }
+},
+{
+  "id": "ump",
+  "code": "UMP",
+  "name": "Trường Đại học Y Dược Thành phố Hồ Chí Minh",
+  "logo_url": null,
+  "description": "Trường Đại học Y Dược TP.HCM là trường đại học công lập trọng điểm quốc gia trong lĩnh vực đào tạo y khoa, dược học, nha khoa và các ngành khoa học sức khỏe.",
+  
+  "type": "public",
+  "country": "VN",
+  
+  "contact": {
+    "website": "https://www.ump.edu.vn",
+    "email": null,
+    "phone": null
+  },
+  
+  "campuses": [
+    {
+      "name": "Cơ sở Quận 5",
+      "address": "217 Hồng Bàng, Quận 5, TP.HCM",
+      "is_main": true
+    }
+  ],
+  
+  "faculties": [
+    {
+      "id": "ump_medicine",
+      "name": "Khoa Y",
+      "code": "MED",
+      "website": null,
+      "programs": [
+        "Y đa khoa",
+        "Y học dự phòng"
+      ]
+    },
+    {
+      "id": "ump_pharmacy",
+      "name": "Khoa Dược",
+      "code": "PHAR",
+      "website": null,
+      "programs": [
+        "Dược học",
+        "Hóa dược"
+      ]
+    },
+    {
+      "id": "ump_dentistry",
+      "name": "Khoa Răng – Hàm – Mặt",
+      "code": "DEN",
+      "website": null,
+      "programs": [
+        "Răng – Hàm – Mặt",
+        "Nha khoa"
+      ]
+    },
+    {
+      "id": "ump_traditional_medicine",
+      "name": "Khoa Y học cổ truyền",
+      "code": "TM",
+      "website": null,
+      "programs": [
+        "Y học cổ truyền"
+      ]
+    },
+    {
+      "id": "ump_public_health",
+      "name": "Khoa Y tế công cộng",
+      "code": "PH",
+      "website": null,
+      "programs": [
+        "Y tế công cộng",
+        "Quản lý y tế"
+      ]
+    },
+    {
+      "id": "ump_preventive_medicine",
+      "name": "Khoa Y học dự phòng",
+      "code": "PM",
+      "website": null,
+      "programs": [
+        "Y học dự phòng"
+      ]
+    },
+    {
+      "id": "ump_nursing_medtech",
+      "name": "Khoa Điều dưỡng & Kỹ thuật Y học",
+      "code": "NM",
+      "website": null,
+      "programs": [
+        "Điều dưỡng",
+        "Kỹ thuật xét nghiệm y học",
+        "Kỹ thuật hình ảnh y học"
+      ]
+    },
+    {
+      "id": "ump_basic_sciences",
+      "name": "Khoa Khoa học Cơ bản",
+      "code": "BS",
+      "website": null,
+      "programs": [
+        "Khoa học y sinh",
+        "Sinh học y học"
+      ]
+    }
+  ],
+  
+  "metadata": {
+    "verified": true,
+    "created_at": "2025-01-29",
+    "updated_at": "2025-01-29"
+  }
+},
+    {
+      "id": "hcmue",
+      "code": "HCMUE",
+      "name": "Trường Đại học Sư phạm TP.HCM",
+      "logo_url": null,
+      "description": "Trường Đại học Sư phạm TP.HCM là trường đại học công lập trọng điểm quốc gia trong lĩnh vực đào tạo giáo viên và khoa học giáo dục.",
+      "type": "public",
+      "country": "VN",
+      "contact": {
+        "website": "https://hcmue.edu.vn",
+        "email": null,
+        "phone": null
+      },
+      "campuses": [
+        {
+          "name": "Cơ sở chính",
+          "address": "280 An Dương Vương, Quận 5, TP.HCM",
+          "is_main": true
+        }
+      ],
+      "faculties": [
+        {
+          "id": "hcmue_math_it",
+          "name": "Khoa Toán - Tin học",
+          "code": "MATHIT",
+          "website": null,
+          "programs": [
+            "Sư phạm Toán",
+            "Toán học ứng dụng",
+            "Sư phạm Tin học",
+            "Tin học giáo dục"
+          ]
+        },
+        {
+          "id": "hcmue_literature",
+          "name": "Khoa Ngữ văn",
+          "code": "LIT",
+          "website": null,
+          "programs": [
+            "Sư phạm Ngữ văn",
+            "Văn học Việt Nam",
+            "Ngôn ngữ học",
+            "Lý luận và phương pháp dạy học Ngữ văn"
+          ]
+        },
+        {
+          "id": "hcmue_physics",
+          "name": "Khoa Vật lý",
+          "code": "PHY",
+          "website": null,
+          "programs": [
+            "Sư phạm Vật lý",
+            "Vật lý học",
+            "Vật lý kỹ thuật",
+            "Phương pháp giảng dạy Vật lý"
+          ]
+        },
+        {
+          "id": "hcmue_chemistry",
+          "name": "Khoa Hóa học",
+          "code": "CHE",
+          "website": null,
+          "programs": [
+            "Sư phạm Hóa học",
+            "Hóa học",
+            "Hóa học ứng dụng",
+            "Phương pháp giảng dạy Hóa học"
+          ]
+        },
+        {
+          "id": "hcmue_biology",
+          "name": "Khoa Sinh học",
+          "code": "BIO",
+          "website": null,
+          "programs": [
+            "Sư phạm Sinh học",
+            "Sinh học",
+            "Sinh học phân tử",
+            "Phương pháp giảng dạy Sinh học"
+          ]
+        },
+        {
+          "id": "hcmue_psy_edu",
+          "name": "Khoa Tâm lý học",
+          "code": "PSY",
+          "website": null,
+          "programs": [
+            "Tâm lý học",
+            "Tâm lý học giáo dục",
+            "Tâm lý học sư phạm",
+            "Tham vấn tâm lý học đường"
+          ]
+        },
+        {
+          "id": "hcmue_primary_edu",
+          "name": "Khoa Giáo dục Tiểu học",
+          "code": "PEDU",
+          "website": null,
+          "programs": [
+            "Giáo dục Tiểu học",
+            "Phương pháp dạy học Tiểu học",
+            "Quản lý lớp học Tiểu học"
+          ]
+        },
+        {
+          "id": "hcmue_preschool_edu",
+          "name": "Khoa Giáo dục Mầm non",
+          "code": "MEDU",
+          "website": null,
+          "programs": [
+            "Giáo dục Mầm non",
+            "Phát triển trẻ mầm non",
+            "Phương pháp giáo dục mầm non"
+          ]
+        },
+        {
+          "id": "hcmue_political_edu",
+          "name": "Khoa Giáo dục Chính trị",
+          "code": "POL",
+          "website": null,
+          "programs": [
+            "Giáo dục Công dân",
+            "Giáo dục Chính trị",
+            "Tư tưởng Hồ Chí Minh",
+            "Phương pháp giảng dạy GDCD"
+          ]
+        },
+        {
+          "id": "hcmue_physical_edu",
+          "name": "Khoa Giáo dục Thể chất",
+          "code": "PE",
+          "website": null,
+          "programs": [
+            "Giáo dục Thể chất",
+            "Huấn luyện Thể thao",
+            "Giáo dục sức khỏe học đường"
+          ]
+        }
+      ],
+      "metadata": {
+        "verified": true,
+        "created_at": "2025-01-19",
+        "updated_at": "2025-01-19"
+      }
+    },
+    {
+      "id": "hcmuaf",
+      "code": "HCMUAF",
+      "name": "Trường Đại học Nông Lâm TP.HCM",
+      "logo_url": null,
+      "description": "Trường Đại học Nông Lâm TP.HCM là trường đại học công lập trọng điểm trong lĩnh vực nông – lâm – ngư nghiệp, tài nguyên, môi trường và công nghệ ứng dụng.",
+      "type": "public",
+      "country": "VN",
+      "contact": {
+        "website": "https://www.hcmuaf.edu.vn",
+        "email": null,
+        "phone": null
+      },
+      "campuses": [
+        {
+          "name": "Cơ sở chính",
+          "address": "Khu phố 6, Phường Linh Trung, TP. Thủ Đức, TP.HCM",
+          "is_main": true
+        }
+      ],
+      "faculties": [
+        {
+          "id": "hcmuaf_agronomy",
+          "name": "Khoa Nông học",
+          "code": "AGRO",
+          "website": null,
+          "programs": [
+            "Nông học",
+            "Bảo vệ thực vật",
+            "Trồng trọt",
+            "Khoa học cây trồng"
+          ]
+        },
+        {
+          "id": "hcmuaf_animal_vet",
+          "name": "Khoa Chăn nuôi - Thú y",
+          "code": "AV",
+          "website": null,
+          "programs": [
+            "Chăn nuôi",
+            "Thú y",
+            "Dinh dưỡng và thức ăn chăn nuôi",
+            "Quản lý trang trại"
+          ]
+        },
+        {
+          "id": "hcmuaf_fisheries",
+          "name": "Khoa Thủy sản",
+          "code": "FISH",
+          "website": null,
+          "programs": [
+            "Nuôi trồng thủy sản",
+            "Bệnh học thủy sản",
+            "Quản lý thủy sản",
+            "Công nghệ chế biến thủy sản"
+          ]
+        },
+        {
+          "id": "hcmuaf_forestry",
+          "name": "Khoa Lâm nghiệp",
+          "code": "FOR",
+          "website": null,
+          "programs": [
+            "Lâm học",
+            "Quản lý tài nguyên rừng",
+            "Lâm nghiệp đô thị",
+            "Công nghệ lâm sản"
+          ]
+        },
+        {
+          "id": "hcmuaf_foodtech",
+          "name": "Khoa Công nghệ Thực phẩm",
+          "code": "FT",
+          "website": null,
+          "programs": [
+            "Công nghệ Thực phẩm",
+            "Đảm bảo chất lượng và an toàn thực phẩm",
+            "Chế biến và bảo quản nông sản"
+          ]
+        },
+        {
+          "id": "hcmuaf_engineering",
+          "name": "Khoa Cơ khí - Công nghệ",
+          "code": "ENG",
+          "website": null,
+          "programs": [
+            "Công nghệ kỹ thuật cơ khí",
+            "Công nghệ kỹ thuật điện - điện tử",
+            "Kỹ thuật điều khiển và tự động hóa"
+          ]
+        },
+        {
+          "id": "hcmuaf_economics",
+          "name": "Khoa Kinh tế",
+          "code": "ECO",
+          "website": null,
+          "programs": [
+            "Kinh tế nông nghiệp",
+            "Quản trị kinh doanh",
+            "Kinh doanh nông nghiệp",
+            "Phát triển nông thôn"
+          ]
+        },
+        {
+          "id": "hcmuaf_environment",
+          "name": "Khoa Môi trường và Tài nguyên",
+          "code": "ENR",
+          "website": null,
+          "programs": [
+            "Khoa học môi trường",
+            "Quản lý tài nguyên và môi trường",
+            "Quản lý đất đai",
+            "Bảo tồn thiên nhiên"
+          ]
+        },
+        {
+          "id": "hcmuaf_it",
+          "name": "Khoa Công nghệ Thông tin",
+          "code": "IT",
+          "website": null,
+          "programs": [
+            "Công nghệ Thông tin",
+            "Hệ thống thông tin",
+            "Kỹ thuật phần mềm",
+            "Khoa học dữ liệu"
+          ]
+        },
+        {
+          "id": "hcmuaf_basic_science",
+          "name": "Khoa Khoa học Cơ bản",
+          "code": "BS",
+          "website": null,
+          "programs": [
+            "Toán ứng dụng",
+            "Hóa học",
+            "Sinh học",
+            "Vật lý ứng dụng"
+          ]
+        }
+      ],
+      "metadata": {
+        "verified": true,
+        "created_at": "2025-01-19",
+        "updated_at": "2025-01-19"
+      }
+    },
+    {
+      "id": "uah",
+      "code": "UAH",
+      "name": "Trường Đại học Kiến trúc TP. Hồ Chí Minh",
+      "logo_url": null,
+      "description": "Trường Đại học Kiến trúc TP. Hồ Chí Minh là trường đại học công lập hàng đầu Việt Nam trong lĩnh vực kiến trúc, quy hoạch, xây dựng và mỹ thuật ứng dụng.",
+      "type": "public",
+      "country": "VN",
+      "contact": {
+        "website": "https://www.uah.edu.vn",
+        "email": null,
+        "phone": null
+      },
+      "campuses": [
+        {
+          "name": "Cơ sở Nguyễn Đình Chiểu",
+          "address": "196 Pasteur, Phường Võ Thị Sáu, Quận 3, TP.HCM",
+          "is_main": true
+        },
+        {
+          "name": "Cơ sở Cộng Hòa",
+          "address": "48 Đặng Thái Thân, Quận Tân Bình, TP.HCM",
+          "is_main": false
+        }
+      ],
+      "faculties": [
+        {
+          "id": "uah_arch",
+          "name": "Khoa Kiến trúc",
+          "code": "ARCH",
+          "website": null,
+          "programs": [
+            "Kiến trúc",
+            "Thiết kế Kiến trúc",
+            "Kiến trúc Bền vững"
+          ]
+        },
+        {
+          "id": "uah_ce",
+          "name": "Khoa Xây dựng",
+          "code": "CE",
+          "website": null,
+          "programs": [
+            "Kỹ thuật Xây dựng",
+            "Quản lý Xây dựng",
+            "Công nghệ Xây dựng"
+          ]
+        },
+        {
+          "id": "uah_iad",
+          "name": "Khoa Kiến trúc Nội thất",
+          "code": "IAD",
+          "website": null,
+          "programs": [
+            "Thiết kế Nội thất",
+            "Thiết kế Không gian Nội thất"
+          ]
+        },
+        {
+          "id": "uah_up",
+          "name": "Khoa Quy hoạch",
+          "code": "UP",
+          "website": null,
+          "programs": [
+            "Quy hoạch Vùng và Đô thị",
+            "Thiết kế Đô thị"
+          ]
+        },
+        {
+          "id": "uah_uie",
+          "name": "Khoa Kỹ thuật Hạ tầng Đô thị",
+          "code": "UIE",
+          "website": null,
+          "programs": [
+            "Kỹ thuật Hạ tầng Đô thị",
+            "Quản lý Hạ tầng Kỹ thuật"
+          ]
+        },
+        {
+          "id": "uah_ia",
+          "name": "Khoa Mỹ thuật Công nghiệp",
+          "code": "IA",
+          "website": null,
+          "programs": [
+            "Thiết kế Đồ họa",
+            "Thiết kế Sản phẩm",
+            "Mỹ thuật Ứng dụng"
+          ]
+        },
+        {
+          "id": "uah_fa",
+          "name": "Khoa Mỹ thuật",
+          "code": "FA",
+          "website": null,
+          "programs": [
+            "Hội họa",
+            "Điêu khắc",
+            "Nghệ thuật Tạo hình"
+          ]
+        },
+        {
+          "id": "uah_bs",
+          "name": "Khoa Khoa học Cơ bản",
+          "code": "BS",
+          "website": null,
+          "programs": [
+            "Toán Ứng dụng",
+            "Vật lý Kỹ thuật",
+            "Hóa học Ứng dụng"
+          ]
+        },
+        {
+          "id": "uah_pt",
+          "name": "Khoa Lý luận Chính trị",
+          "code": "PT",
+          "website": null,
+          "programs": [
+            "Triết học Mác - Lênin",
+            "Tư tưởng Hồ Chí Minh",
+            "Pháp luật Đại cương"
+          ]
+        }
+      ],
+      "metadata": {
+        "verified": true,
+        "created_at": "2025-01-19",
+        "updated_at": "2025-01-19"
+      }
+    },
+    {
+      "id": "pnt",
+      "code": "PNTU",
+      "name": "Trường Đại học Y khoa Phạm Ngọc Thạch",
+      "logo_url": null,
+      "description": "Trường Đại học Y khoa Phạm Ngọc Thạch là trường đại học công lập chuyên đào tạo nguồn nhân lực y tế cho TP.HCM và khu vực phía Nam.",
+      "type": "public",
+      "country": "VN",
+      "contact": {
+        "website": "https://pnt.edu.vn",
+        "email": null,
+        "phone": null
+      },
+      "campuses": [
+        {
+          "name": "Cơ sở chính",
+          "address": "2 Dương Quang Trung, Quận 10, TP.HCM",
+          "is_main": true
+        }
+      ],
+      "faculties": [
+        {
+          "id": "pnt_medicine",
+          "name": "Khoa Y",
+          "code": "MED",
+          "website": null,
+          "programs": [
+            "Y đa khoa",
+            "Giải phẫu học",
+            "Sinh lý học",
+            "Bệnh học",
+            "Lâm sàng Nội - Ngoại - Sản - Nhi"
+          ]
+        },
+        {
+          "id": "pnt_pharmacy",
+          "name": "Khoa Dược",
+          "code": "PHAR",
+          "website": null,
+          "programs": [
+            "Dược học",
+            "Hóa dược",
+            "Dược lý học",
+            "Bào chế",
+            "Dược lâm sàng"
+          ]
+        },
+        {
+          "id": "pnt_nursing",
+          "name": "Khoa Điều dưỡng",
+          "code": "NUR",
+          "website": null,
+          "programs": [
+            "Điều dưỡng",
+            "Điều dưỡng cơ bản",
+            "Chăm sóc người bệnh",
+            "Điều dưỡng cộng đồng"
+          ]
+        },
+        {
+          "id": "pnt_dentistry",
+          "name": "Khoa Răng - Hàm - Mặt",
+          "code": "DEN",
+          "website": null,
+          "programs": [
+            "Răng Hàm Mặt",
+            "Giải phẫu răng hàm mặt",
+            "Nha khoa phục hồi",
+            "Phẫu thuật nha khoa"
+          ]
+        },
+        {
+          "id": "pnt_lab_tech",
+          "name": "Khoa Kỹ thuật Xét nghiệm Y học",
+          "code": "MLT",
+          "website": null,
+          "programs": [
+            "Kỹ thuật xét nghiệm y học",
+            "Huyết học",
+            "Hóa sinh lâm sàng",
+            "Vi sinh y học"
+          ]
+        },
+        {
+          "id": "pnt_med_imaging",
+          "name": "Khoa Kỹ thuật Hình ảnh Y học",
+          "code": "MIT",
+          "website": null,
+          "programs": [
+            "Kỹ thuật hình ảnh y học",
+            "X-quang",
+            "Siêu âm",
+            "An toàn bức xạ"
+          ]
+        },
+        {
+          "id": "pnt_optometry",
+          "name": "Khoa Khúc xạ Nhãn khoa",
+          "code": "OPT",
+          "website": null,
+          "programs": [
+            "Khúc xạ nhãn khoa",
+            "Nhãn khoa cơ bản",
+            "Đo thị lực",
+            "Kính điều chỉnh"
+          ]
+        },
+        {
+          "id": "pnt_public_health",
+          "name": "Khoa Y tế Công cộng",
+          "code": "PH",
+          "website": null,
+          "programs": [
+            "Y tế công cộng",
+            "Dịch tễ học",
+            "Quản lý y tế",
+            "Truyền thông giáo dục sức khỏe"
+          ]
+        },
+        {
+          "id": "pnt_nutrition",
+          "name": "Khoa Dinh dưỡng",
+          "code": "NUT",
+          "website": null,
+          "programs": [
+            "Dinh dưỡng",
+            "Dinh dưỡng lâm sàng",
+            "Dinh dưỡng cộng đồng",
+            "Tiết chế"
+          ]
+        }
+      ],
+      "metadata": {
+        "verified": true,
+        "created_at": "2025-01-19",
+        "updated_at": "2025-01-19"
+      }
+    },
+    {
+      "id": "hsu",
+      "code": "HSU",
+      "name": "Trường Đại học Hoa Sen",
+      "logo_url": null,
+      "description": "Trường Đại học Hoa Sen là trường đại học ngoài công lập tại TP.HCM, đào tạo đa ngành theo định hướng ứng dụng và hội nhập quốc tế.",
+      "type": "private",
+      "country": "VN",
+      "contact": {
+        "website": "https://www.hoasen.edu.vn",
+        "email": null,
+        "phone": null
+      },
+      "campuses": [
+        {
+          "name": "Cơ sở chính",
+          "address": "08 Nguyễn Văn Tráng, Quận 1, TP.HCM",
+          "is_main": true
+        }
+      ],
+      "faculties": [
+        {
+          "id": "hsu_business",
+          "name": "Khoa Kinh tế – Quản trị",
+          "code": "BUS",
+          "website": null,
+          "programs": [
+            "Quản trị Kinh doanh",
+            "Quản trị Nhân lực",
+            "Kinh tế Thể thao"
+          ]
+        },
+        {
+          "id": "hsu_marketing",
+          "name": "Khoa Marketing – Truyền thông",
+          "code": "MAR",
+          "website": null,
+          "programs": [
+            "Marketing",
+            "Quan hệ Công chúng",
+            "Quản trị Công nghệ Truyền thông",
+            "Digital Marketing"
+          ]
+        },
+        {
+          "id": "hsu_finance",
+          "name": "Khoa Tài chính – Ngân hàng",
+          "code": "FIN",
+          "website": null,
+          "programs": [
+            "Tài chính – Ngân hàng",
+            "Kế toán",
+            "Công nghệ Tài chính (FinTech)"
+          ]
+        },
+        {
+          "id": "hsu_logistics",
+          "name": "Khoa Logistics – Thương mại Quốc tế",
+          "code": "LOG",
+          "website": null,
+          "programs": [
+            "Logistics và Quản lý Chuỗi Cung ứng",
+            "Kinh doanh Quốc tế",
+            "Thương mại Điện tử"
+          ]
+        },
+        {
+          "id": "hsu_tourism",
+          "name": "Khoa Du lịch – Nhà hàng – Khách sạn",
+          "code": "TOUR",
+          "website": null,
+          "programs": [
+            "Quản trị Khách sạn",
+            "Quản trị Dịch vụ Du lịch và Lữ hành",
+            "Quản trị Nhà hàng và Dịch vụ Ăn uống"
+          ]
+        },
+        {
+          "id": "hsu_design",
+          "name": "Khoa Thiết kế – Nghệ thuật",
+          "code": "DES",
+          "website": null,
+          "programs": [
+            "Thiết kế Đồ họa",
+            "Thiết kế Thời trang",
+            "Thiết kế Nội thất",
+            "Nghệ thuật Số"
+          ]
+        },
+        {
+          "id": "hsu_language",
+          "name": "Khoa Ngôn ngữ – Văn hóa Quốc tế",
+          "code": "LANG",
+          "website": null,
+          "programs": [
+            "Ngôn ngữ Anh",
+            "Ngôn ngữ Trung Quốc",
+            "Ngôn ngữ Hàn Quốc"
+          ]
+        },
+        {
+          "id": "hsu_it",
+          "name": "Khoa Công nghệ Thông tin",
+          "code": "IT",
+          "website": null,
+          "programs": [
+            "Công nghệ Thông tin",
+            "Kỹ thuật Phần mềm",
+            "Mạng máy tính và Truyền thông Dữ liệu"
+          ]
+        },
+        {
+          "id": "hsu_social",
+          "name": "Khoa Khoa học Xã hội",
+          "code": "SOC",
+          "website": null,
+          "programs": [
+            "Tâm lý học",
+            "Nhật Bản học"
+          ]
+        }
+      ],
+      "metadata": {
+        "verified": true,
+        "created_at": "2025-01-19",
+        "updated_at": "2025-01-19"
+      }
+    },
+    {
+      "id": "huflit",
+      "code": "HUFLIT",
+      "name": "Trường Đại học Ngoại ngữ – Tin học TP.HCM",
+      "logo_url": null,
+      "description": "Trường Đại học Ngoại ngữ – Tin học TP.HCM (HUFLIT) là trường đại học tư thục đa ngành, thế mạnh về ngoại ngữ, công nghệ thông tin và các ngành kinh tế – dịch vụ.",
+      "type": "private",
+      "country": "VN",
+      "contact": {
+        "website": "https://huflit.edu.vn",
+        "email": null,
+        "phone": null
+      },
+      "campuses": [
+        {
+          "name": "Cơ sở Sư Vạn Hạnh",
+          "address": "828 Sư Vạn Hạnh, Quận 10, TP.HCM",
+          "is_main": true
+        }
+      ],
+      "faculties": [
+        {
+          "id": "huflit_fl",
+          "name": "Khoa Ngoại ngữ",
+          "code": "FL",
+          "website": null,
+          "programs": [
+            "Ngôn ngữ Anh",
+            "Ngôn ngữ Trung Quốc",
+            "Biên – Phiên dịch",
+            "Giảng dạy tiếng Anh"
+          ]
+        },
+        {
+          "id": "huflit_it",
+          "name": "Khoa Công nghệ Thông tin",
+          "code": "IT",
+          "website": null,
+          "programs": [
+            "Công nghệ Thông tin",
+            "Hệ thống Thông tin",
+            "Khoa học Dữ liệu",
+            "Trí tuệ Nhân tạo"
+          ]
+        },
+        {
+          "id": "huflit_oriental",
+          "name": "Khoa Ngôn ngữ và Văn hóa Phương Đông",
+          "code": null,
+          "website": null,
+          "programs": [
+            "Ngôn ngữ Nhật",
+            "Ngôn ngữ Hàn"
+          ]
+        },
+        {
+          "id": "huflit_ba",
+          "name": "Khoa Quản trị Kinh doanh",
+          "code": "BA",
+          "website": null,
+          "programs": [
+            "Quản trị Kinh doanh",
+            "Marketing",
+            "Quản trị Nhân lực"
+          ]
+        },
+        {
+          "id": "huflit_iba",
+          "name": "Khoa Quản trị Kinh doanh Quốc tế",
+          "code": "IBA",
+          "website": null,
+          "programs": [
+            "Kinh doanh Quốc tế",
+            "Quản lý Chuỗi Cung ứng"
+          ]
+        },
+        {
+          "id": "huflit_tourism",
+          "name": "Khoa Du lịch – Khách sạn",
+          "code": null,
+          "website": null,
+          "programs": [
+            "Quản trị Dịch vụ Du lịch và Lữ hành",
+            "Quản trị Khách sạn"
+          ]
+        },
+        {
+          "id": "huflit_ir",
+          "name": "Khoa Quan hệ Quốc tế và Truyền thông",
+          "code": null,
+          "website": null,
+          "programs": [
+            "Quan hệ Quốc tế",
+            "Quan hệ Công chúng"
+          ]
+        },
+        {
+          "id": "huflit_eco_fin",
+          "name": "Khoa Kinh tế – Tài chính",
+          "code": null,
+          "website": null,
+          "programs": [
+            "Kinh tế",
+            "Tài chính – Ngân hàng",
+            "Kế toán – Kiểm toán"
+          ]
+        },
+        {
+          "id": "huflit_law",
+          "name": "Khoa Luật",
+          "code": "LAW",
+          "website": null,
+          "programs": [
+            "Luật",
+            "Luật Kinh tế"
+          ]
+        }
+      ],
+      "metadata": {
+        "verified": true,
+        "created_at": "2025-01-29",
+        "updated_at": "2025-01-29"
+      }
+    },
+{
+      "id": "nttu",
+      "code": "NTTU",
+      "name": "Trường Đại học Nguyễn Tất Thành",
+      "logo_url": null,
+      "description": "Trường Đại học Nguyễn Tất Thành là trường đại học đa ngành tại TP.HCM, đào tạo các lĩnh vực kinh tế, kỹ thuật, công nghệ, y dược, ngoại ngữ và nghệ thuật.",
+      "type": "private",
+      "country": "VN",
+      "contact": {
+        "website": "https://ntt.edu.vn",
+        "email": null,
+        "phone": null
+      },
+      "campuses": [
+        {
+          "name": "Cơ sở Quận 4",
+          "address": "300A Nguyễn Tất Thành, Quận 4, TP.HCM",
+          "is_main": true
+        }
+      ],
+      "faculties": [
+        {
+          "id": "nttu_fba",
+          "name": "Khoa Quản trị Kinh doanh",
+          "code": "FBA",
+          "website": null,
+          "programs": [
+            "Quản trị Kinh doanh",
+            "Marketing",
+            "Quản trị Nhân lực",
+            "Kinh doanh Quốc tế",
+            "Logistics và Quản lý Chuỗi Cung ứng"
+          ]
+        },
+        {
+          "id": "nttu_ffa",
+          "name": "Khoa Tài chính - Kế toán",
+          "code": "FFA",
+          "website": null,
+          "programs": [
+            "Tài chính - Ngân hàng",
+            "Kế toán",
+            "Kiểm toán"
+          ]
+        },
+        {
+          "id": "nttu_law",
+          "name": "Khoa Luật",
+          "code": "LAW",
+          "website": null,
+          "programs": [
+            "Luật",
+            "Luật Kinh tế"
+          ]
+        },
+        {
+          "id": "nttu_it",
+          "name": "Khoa Công nghệ Thông tin",
+          "code": "IT",
+          "website": null,
+          "programs": [
+            "Công nghệ Thông tin",
+            "Khoa học Máy tính",
+            "Kỹ thuật Phần mềm",
+            "Mạng máy tính và Truyền thông dữ liệu"
+          ]
+        },
+        {
+          "id": "nttu_eng",
+          "name": "Khoa Kỹ thuật - Công nghệ",
+          "code": "ENG",
+          "website": null,
+          "programs": [
+            "Kỹ thuật Cơ khí",
+            "Kỹ thuật Điện - Điện tử",
+            "Kỹ thuật Ô tô",
+            "Kỹ thuật Xây dựng"
+          ]
+        },
+        {
+          "id": "nttu_env_food",
+          "name": "Khoa Kỹ thuật Môi trường và Thực phẩm",
+          "code": "EF",
+          "website": null,
+          "programs": [
+            "Công nghệ Thực phẩm",
+            "Kỹ thuật Môi trường"
+          ]
+        },
+        {
+          "id": "nttu_bio",
+          "name": "Khoa Công nghệ Sinh học",
+          "code": "BIO",
+          "website": null,
+          "programs": [
+            "Công nghệ Sinh học",
+            "Công nghệ Y sinh"
+          ]
+        },
+        {
+          "id": "nttu_lang",
+          "name": "Khoa Ngoại ngữ",
+          "code": "FL",
+          "website": null,
+          "programs": [
+            "Ngôn ngữ Anh",
+            "Ngôn ngữ Trung Quốc",
+            "Ngôn ngữ Nhật",
+            "Ngôn ngữ Hàn Quốc"
+          ]
+        },
+        {
+          "id": "nttu_tourism",
+          "name": "Khoa Du lịch và Nghiên cứu Việt Nam",
+          "code": "TVS",
+          "website": null,
+          "programs": [
+            "Du lịch",
+            "Quản trị Khách sạn",
+            "Quản trị Dịch vụ Du lịch và Lữ hành"
+          ]
+        },
+        {
+          "id": "nttu_arch_art",
+          "name": "Khoa Kiến trúc - Xây dựng - Mỹ thuật Ứng dụng",
+          "code": "AAA",
+          "website": null,
+          "programs": [
+            "Kiến trúc",
+            "Thiết kế Nội thất",
+            "Mỹ thuật Ứng dụng",
+            "Xây dựng Dân dụng và Công nghiệp"
+          ]
+        }
+      ],
+      "metadata": {
+        "verified": true,
+        "created_at": "2025-01-19",
+        "updated_at": "2025-01-19"
+      }
+    }
+  ]
+}
