@@ -1,4 +1,7 @@
+from pathlib import Path
 from fastapi import FastAPI, Depends, HTTPException, Query, Request
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 from typing import List, Optional
@@ -9,6 +12,10 @@ from slowapi.util import get_remote_address
 import app.models as models
 import app.schemas as schemas
 from app.database import engine, get_db
+
+BASE_DIR = Path(__file__).resolve().parent
+STATIC_DIR = BASE_DIR / "static"
+LANDING_PAGE = STATIC_DIR / "index.html"
 
 # Create tables
 models.Base.metadata.create_all(bind=engine)
@@ -34,10 +41,19 @@ app = FastAPI(
 # Attach rate limiter to app
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
 
-@app.get("/", tags=["Root"])
-def root():
+@app.get("/", response_class=HTMLResponse, include_in_schema=False)
+def landing_page(request: Request):
+    """Product landing page."""
+    root_path = request.scope.get("root_path", "").rstrip("/")
+    html = LANDING_PAGE.read_text(encoding="utf-8")
+    return html.replace("__ROOT_PATH__", root_path)
+
+
+@app.get("/api/v1", tags=["Root"])
+def api_root():
     """API Root - Welcome message"""
     return {
         "message": "Vietnam Schools API",
@@ -131,7 +147,7 @@ def create_school(
         description=school.description,
         type=school.type,
         country=school.country,
-        contact=school.contact.dict(),
+        contact=school.contact.model_dump(),
         verified=school.metadata.verified,
         created_at=school.metadata.created_at,
         updated_at=school.metadata.updated_at
@@ -186,7 +202,7 @@ def update_school(
     db_school.description = school.description
     db_school.type = school.type
     db_school.country = school.country
-    db_school.contact = school.contact.dict()
+    db_school.contact = school.contact.model_dump()
     db_school.verified = school.metadata.verified
     db_school.updated_at = school.metadata.updated_at
     
