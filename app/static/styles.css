@@ -132,7 +132,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 56px;
 }
 
 .nav-links {
@@ -144,7 +144,7 @@ a {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   color: var(--ink);
 }
 
@@ -152,22 +152,15 @@ a {
   color: var(--ink);
 }
 
-.brand:hover .brand-mark {
-  transform: scale(1.05) rotate(-2deg);
-  box-shadow: 0 8px 24px rgba(6, 78, 59, 0.3);
+.brand:hover .brand-logo {
+  transform: scale(1.08) rotate(-3deg);
 }
 
-.brand-mark {
-  display: inline-grid;
-  width: 40px;
-  height: 40px;
-  place-items: center;
-  border-radius: 12px;
-  color: #fff;
-  background: linear-gradient(135deg, var(--green-500), var(--green-800));
-  box-shadow: 0 6px 20px rgba(6, 78, 59, 0.25);
-  font-weight: 900;
-  font-size: 1.1rem;
+.brand-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  object-fit: contain;
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -175,14 +168,14 @@ a {
   display: block;
   line-height: 1.1;
   font-weight: 800;
-  font-size: 1.05rem;
+  font-size: 0.92rem;
   letter-spacing: -0.02em;
 }
 
 .brand small {
   display: block;
   color: var(--muted);
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 600;
   letter-spacing: 0.01em;
   margin-top: 1px;
@@ -191,8 +184,8 @@ a {
 .nav-links .nav-link {
   color: var(--ink-secondary);
   font-weight: 600;
-  font-size: 0.9rem;
-  padding: 8px 16px;
+  font-size: 0.82rem;
+  padding: 6px 12px;
   border-radius: var(--radius-sm);
   transition: all 0.2s ease;
 }
