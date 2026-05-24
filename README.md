@@ -1,10 +1,10 @@
-# 🎓 Schools API
+# UniAPI
 
-> Open API cho các trường đại học, cao đẳng tại Việt Nam
+> Open API for Vietnamese universities, colleges, faculties & campuses.
 
-🌐 **API:** https://apihoavan.xyz/openapi/
+**API:** https://apihoavan.xyz/openapi/
 
-📖 **Docs:** https://apihoavan.xyz/openapi/docs
+**Docs:** https://apihoavan.xyz/openapi/docs
 
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -14,9 +14,10 @@
 
 ---
 
-## 🚀 Sử dụng API
+## Usage
 
 ### Base URL
+
 ```
 https://apihoavan.xyz/openapi
 ```
@@ -24,183 +25,134 @@ https://apihoavan.xyz/openapi
 ### Endpoints
 
 ```bash
-# Danh sách trường
-GET /api/v1/schools
+# List schools (with pagination)
+GET /api/v1/schools?limit=50&skip=0
 
-# Chi tiết trường
-GET /api/v1/schools/{school_id}
+# Search by name or code
+GET /api/v1/schools?search=bach+khoa
 
-# Tìm kiếm
-GET /api/v1/schools?search=bách+khoa
-
-# Lọc theo loại
+# Filter by type and country
 GET /api/v1/schools?type=public&country=VN
 
-# Danh sách khoa
-GET /api/v1/faculties
+# School detail
+GET /api/v1/schools/{school_id}
 
-# Khoa của một trường
+# Faculties
+GET /api/v1/faculties
 GET /api/v1/schools/{school_id}/faculties
+
+# Campuses
+GET /api/v1/schools/{school_id}/campuses
 ```
 
 ### Response Example
 
 ```json
-[
-  {
-    "id": "hcmus",
-    "code": "QTD",
-    "name": "Trường Đại học Khoa học Tự nhiên",
-    "type": "public",
-    "country": "VN",
-    "contact": {
-      "website": "https://www.hcmus.edu.vn",
-      "email": "dhkhtn@hcmus.edu.vn"
-    },
-    "campuses": [...],
-    "faculties": [...]
-  }
-]
+{
+  "id": "hcmus",
+  "code": "QTD",
+  "name": "Truong Dai hoc Khoa hoc Tu nhien",
+  "type": "public",
+  "country": "VN",
+  "contact": {
+    "website": "https://www.hcmus.edu.vn",
+    "email": "dhkhtn@hcmus.edu.vn"
+  },
+  "campuses": [],
+  "faculties": []
+}
 ```
+
+### Rate Limits
+
+| Endpoint | Limit |
+|----------|-------|
+| `GET /schools` | 100/min |
+| `GET /schools/{id}` | 200/min |
+| `GET /faculties` | 50/min |
+| `POST/PUT/DELETE` | 10/min |
 
 ---
 
-## 💻 Development
-
-### Quick Start
+## Development
 
 ```bash
-# Clone repo
 git clone https://github.com/ZenithHawking/schools-api.git
 cd schools-api
 
-# Setup
-python3 -m venv venv
-source venv/bin/activate
+python -m venv venv
+source venv/bin/activate   # Linux/Mac
+venv\Scripts\activate      # Windows
+
 pip install -r requirements.txt
-
-# Import data
 python scripts/import_data.py
-
-# Run server
 uvicorn app.main:app --reload --port 8000
+```
+
+### Refresh Government School Data
+
+```bash
+python scripts/fetch_government_public_schools.py
+python scripts/import_data.py
 ```
 
 ### Tech Stack
 
 - **FastAPI** 0.109.0
 - **SQLAlchemy** 2.0
-- **SQLite** (có thể dùng PostgreSQL)
+- **SQLite**
 - **Uvicorn**
 
 ---
 
-## 🤝 Đóng góp
+## Data
 
-### Cách 1: Edit trên GitHub (Dễ nhất)
+All JSON files in `data/` are auto-imported by `scripts/import_data.py`.
 
-1. Vào file: [`data/schools.json`](https://github.com/ZenithHawking/schools-api/blob/main/data/schools.json)
-2. Click nút **✏️ Edit**
-3. Thêm thông tin trường theo format
-4. Click **"Propose changes"** → Tạo Pull Request
+You can add new files like `data/hanoi-schools.json`, `data/hcm-schools.json`, etc.
 
-### Cách 2: Fork & PR
+### Schema
 
-```bash
-# Fork repo → Clone về máy
-git clone https://github.com/YOUR_USERNAME/schools-api.git
+| Table | Fields |
+|-------|--------|
+| **schools** | id, code, name, type, country, contact, verified |
+| **faculties** | id, school_id, name, code, programs |
+| **campuses** | id, school_id, name, address, is_main |
 
-# Tạo branch mới
-git checkout -b add-school-abc
-
-# Thêm data vào data/*.json
-# Commit & push
-git add data/
-git commit -m "Add: Trường ABC"
-git push origin add-school-abc
-
-# Tạo Pull Request trên GitHub
-```
-
-### Template trường mới
+### Add a School
 
 ```json
 {
   "id": "school-slug",
   "code": "ABC",
-  "name": "Tên trường đầy đủ",
-  "description": "Mô tả ngắn gọn",
+  "name": "Full school name",
   "type": "public",
   "country": "VN",
-  "contact": {
-    "website": "https://...",
-    "email": "contact@..."
-  },
-  "campuses": [
-    {
-      "name": "Cơ sở chính",
-      "address": "Địa chỉ đầy đủ",
-      "is_main": true
-    }
-  ],
-  "faculties": [
-    {
-      "id": "faculty-slug",
-      "name": "Tên khoa",
-      "code": "XX",
-      "programs": ["Ngành 1", "Ngành 2"]
-    }
-  ],
-  "metadata": {
-    "verified": false,
-    "created_at": "2026-01-26",
-    "updated_at": "2026-01-26"
-  }
+  "contact": { "website": "https://...", "email": "..." },
+  "campuses": [{ "name": "Main", "address": "...", "is_main": true }],
+  "faculties": [{ "id": "fac-slug", "name": "...", "code": "XX", "programs": [] }],
+  "metadata": { "verified": false, "created_at": "2026-01-26", "updated_at": "2026-01-26" }
 }
 ```
 
-### Quy tắc
-
-- ✅ Thông tin chính xác
-- ✅ Follow đúng format JSON
-- ✅ Test local trước khi PR
-- ✅ Một trường một PR
-
 ---
 
-## 📂 Cấu trúc Data
-
-Bạn có thể:
-1. **Thêm vào file có sẵn:** `data/schools.json`
-2. **Tạo file mới:** `data/hanoi-schools.json`, `data/hcm-schools.json`...
-
-Script import tự động đọc **tất cả file `.json`** trong thư mục `data/`.
-
----
-
-## 🚀 Deploy
-
-### Production Server
+## Deploy
 
 ```bash
-# Clone repo
 git clone https://github.com/ZenithHawking/schools-api.git
 cd schools-api
-
-# Setup
-python3 -m venv venv
+python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 python scripts/import_data.py
-
-# Tạo systemd service
-sudo nano /etc/systemd/system/schools-api.service
 ```
 
-**Service file:**
+### Systemd Service
+
 ```ini
 [Unit]
-Description=Schools API
+Description=UniAPI
 After=network.target
 
 [Service]
@@ -216,43 +168,29 @@ WantedBy=multi-user.target
 ```
 
 ```bash
-# Enable & start
 sudo systemctl daemon-reload
 sudo systemctl enable schools-api
 sudo systemctl start schools-api
 ```
 
-### Update Data
+---
 
-```bash
-cd ~/schools-api
-git pull origin main
-source venv/bin/activate
-python scripts/import_data.py
-sudo systemctl restart schools-api
-```
+## Contributing
+
+1. Fork & clone
+2. Create branch: `git checkout -b add-school-abc`
+3. Add data to `data/*.json`
+4. Test locally
+5. Open a Pull Request
 
 ---
 
-## 📊 Database Schema
+## License
 
-| Table | Key Fields |
-|-------|------------|
-| **schools** | id, code, name, type, country |
-| **faculties** | id, school_id, name, programs |
-| **campuses** | id, school_id, name, address |
+MIT License - Free to use.
 
 ---
 
-## 📝 License
+**Issues:** [GitHub Issues](https://github.com/ZenithHawking/schools-api/issues)
 
-MIT License - Free to use
-
----
-
-## 📧 Contact
-
-- **Issues:** [GitHub Issues](https://github.com/ZenithHawking/schools-api/issues)
-- **API:** https://apihoavan.xyz/openapi/
-
-Made with ❤️ by Zenith
+Made by Zenith
